@@ -227,7 +227,7 @@ function DoctorFind() {
 
                             <Typography xs={12} md={6} sx={{ display: 'flex', alignItems: 'center', width: '100%', justifyContent: 'space-evenly', pl: '20rem', pr: '20rem', }}>
                                 <Link variant="button" color="text.primary" href="#" sx={{ mx: 2 }}>
-                                    Consult with a doctor
+                                    Consult with a doctor!!
                                 </Link>
 
                                 <Link variant="button" color="text.primary" href="#" sx={{ mx: 2 }}>
