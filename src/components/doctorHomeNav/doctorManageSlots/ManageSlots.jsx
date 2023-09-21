@@ -15,43 +15,49 @@ function ManageSlots() {
 
   const time = ["09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "18:00", "18:30", "19:00"]
   const [timeSlots, setTimeSlot] = useState([])
-  const [availableTimeSlots, setAvailableTimeSlot] = useState([])
   const [selectedButtonIndices, setSelectedButtonIndices] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
   const [formattedDate, setFormatedDate] = useState(null);
+  const [refresh, setRefresh] = useState(true);
 
 
  
-  useEffect(()=>{
+  useEffect(() => {
     if (selectedDate !== null) {
-     const formattedDate = format(selectedDate?.$d, 'MMMM,dd,yyyy');
-     setFormatedDate(formattedDate)
+      const formattedDate = format(selectedDate?.$d, 'MMMM,dd,yyyy');
+      setFormatedDate(formattedDate);
+      fetchSlots(formattedDate);
     }
-  },[selectedDate])
-
-  const handleDateChange = async (date) => {
-    try {
-      setSelectedDate(date);
-    const res = await axios.post("/get-slots", { doctorId })
-    const slots = res.data.slotsData
+  }, [refresh]);
+  
+  const fetchSlots = async (date) => {
+  try {
+    const res = await axios.post("/get-slots", { doctorId });
+    const slots = res.data.slotsData;
     for (let i = 0; i < slots.length; i++) {
-      if (slots[i]['date'] === formattedDate) {
-        console.log(formattedDate);
-        console.log(slots[i]['slots']);
-        setTimeSlot([...slots[i]['slots']])
-        if(timeSlots){
-          const ind=[]
-          timeSlots.forEach((slot)=>{
-            return ind.push(time.indexOf(slot))
-          })
-          setSelectedButtonIndices([...ind])
+      if (slots[i]['date'] === date) {
+        setTimeSlot([...slots[i]['slots']]);
+        if (timeSlots) {
+          const ind = [];
+          timeSlots.forEach((slot) => {
+            return ind.push(time.indexOf(slot));
+          });
+          setSelectedButtonIndices([...ind]);
         }
       }
     }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const handleDateChange = async (date) => {
+  setRefresh(!refresh);
+  setSelectedDate(date);
+  const formattedDate = format(date?.$d, 'MMMM,dd,yyyy');
+  setFormatedDate(formattedDate);
+  fetchSlots(formattedDate);
+};
 
 
 

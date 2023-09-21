@@ -49,10 +49,14 @@ function Appointmentconfirm() {
 
         const appointmentData = { ...slotdata, name: values.name, mobile: values.mobile,email: values.email, reason: values.reason, fee: values.consultaionFee, userId: userData._id, doctorId: doctor._id }
         const appointmentDetails = await axios.post('/add-appointment', appointmentData)
-        if (appointmentDetails !== undefined) {  
-           dispatch(appointment(appointmentDetails))
+        console.log(appointmentDetails,'ghgkjghghfgh');
+
+        if (appointmentDetails?.status===201) {  
+          //  dispatch(appointment(appointmentDetails))
           const paymetInfo={name:values.name,RegisterFee:500}
+          console.log('fgdhsdgshd');
           await axios.post("/create-checkout-session",paymetInfo)
+         
           .then((res)=>{
             if(res.data.paymentDetail){
               window.location.href=res.data.paymentDetail
@@ -60,6 +64,7 @@ function Appointmentconfirm() {
           })
           .catch((err)=>console.log(err.message))
         }
+        console.log('fgfgfg');
 
       } catch (error) {
         console.log(error);

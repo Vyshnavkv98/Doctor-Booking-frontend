@@ -29,6 +29,7 @@ function ListAllDoctor() {
             }
         })()
     },[location])
+    
 
     return (
         <Grid container display={'flex'} flexDirection={'row'}>

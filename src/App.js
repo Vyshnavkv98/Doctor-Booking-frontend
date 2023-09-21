@@ -23,6 +23,7 @@ import AdminAllDepartmentDetails from './pages/AdminAllDepartmentDetails';
 import AdiminDoctorVerification from './pages/AdminDoctorVerification';
 import ManageDoctorSlots from './pages/doctor/doctorSlotAppointment/ManageDoctorSlots';
 import AnimationWrapper from './animationWrapper/AnimationWrapper';
+import DoctorVideoConsultationSlotBooking from './pages/doctor/doctorVideoConsultationSlotBooking/DoctorVideoConsultationSlotBooking';
 
 
 function App() {
@@ -66,6 +67,7 @@ function App() {
           <Route path='/doctor-Profile-verify' element={<DoctorProfileVerify />}></Route>
           <Route path='/Doctor-verify1' element={<DoctorVerifyData1 />}></Route>
           <Route path='/Doctor-manage-slots' element={<ManageDoctorSlots />}></Route>
+          <Route path='/Doctor-videocall-manage-slots' element={<DoctorVideoConsultationSlotBooking />}></Route>
 
 
 
