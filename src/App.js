@@ -24,6 +24,7 @@ import AdiminDoctorVerification from './pages/AdminDoctorVerification';
 import ManageDoctorSlots from './pages/doctor/doctorSlotAppointment/ManageDoctorSlots';
 import AnimationWrapper from './animationWrapper/AnimationWrapper';
 import DoctorVideoConsultationSlotBooking from './pages/doctor/doctorVideoConsultationSlotBooking/DoctorVideoConsultationSlotBooking';
+import DoctorOnlineAppointments from './pages/doctor/doctorOnlineAppointments/DoctorOnlineAppointments';
 
 
 function App() {
@@ -68,6 +69,7 @@ function App() {
           <Route path='/Doctor-verify1' element={<DoctorVerifyData1 />}></Route>
           <Route path='/Doctor-manage-slots' element={<ManageDoctorSlots />}></Route>
           <Route path='/Doctor-videocall-manage-slots' element={<DoctorVideoConsultationSlotBooking />}></Route>
+          <Route path='/doctor-online-appointment' element={<DoctorOnlineAppointments />}></Route>
 
 
 

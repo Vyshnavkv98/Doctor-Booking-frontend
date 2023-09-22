@@ -4,7 +4,7 @@ import DoctorSideNav from '../../../components/doctorHomeNav/doctorSideNav/Docto
 import PatientDetails from '../../../components/doctorHomeNav/doctor-patients/PatientDetails'
 import { Grid } from '@mui/material'
 
-function DoctorHomePage() {
+function DoctorOnlineAppointments() {
   return (
     <Grid>
       <Grid><DoctorNavBar /></Grid>
@@ -12,10 +12,10 @@ function DoctorHomePage() {
         <Grid>
         <DoctorSideNav/>
         </Grid>
-        {/* <Grid className='flex-1 mt-4 ml-2 mr-3'><PatientDetails/> </Grid> */}
+        <Grid className='flex-1 mt-4 ml-2 mr-3'><PatientDetails/> </Grid>
       </Grid>
     </Grid>
   )
 }
 
-export default DoctorHomePage
+export default DoctorOnlineAppointments

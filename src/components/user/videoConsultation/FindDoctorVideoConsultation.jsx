@@ -8,8 +8,10 @@ import img2 from '../../../assets/gynaecologist.svg'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import axios from '../../../axios/axios'
+import { useNavigate } from 'react-router-dom';
 
 function FindDoctorVideoConsultation() {
+    const navigate=useNavigate()
 
     const [startIndex, setStartIndex] = useState(0);
     const [departments, setDepartments] = useState([])
@@ -25,7 +27,9 @@ function FindDoctorVideoConsultation() {
         departmentsData()
     }, [])
    
-
+   const handleSearchDoctor=(department,index)=>{
+        navigate('/doctor-book-video-consultation',{state:department})
+    }
         const handlePrevClick = () => {
             setStartIndex(Math.max(0, startIndex - 1));
         };
@@ -108,6 +112,7 @@ function FindDoctorVideoConsultation() {
                                         <CardContent style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                                             <Grid width={'8rem'} height={'8rem'} borderRadius={'100%'} mt={2} bgcolor={'white'}>
                                                 <img
+                                                    onClick={()=>handleSearchDoctor(department?.departmentName,index)}
                                                     src={department.departmentImg}
                                                     style={{ height: '8rem', width: '8rem', borderRadius: '100%' }}
                                                     alt=""

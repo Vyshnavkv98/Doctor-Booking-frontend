@@ -51,6 +51,12 @@ const DoctorSideNav = () => {
                 navigate('/Doctor-manage-slots')
                
             }
+            if (item === 'Video consultaion') {
+                console.log('fffff');
+
+                navigate('/doctor-online-appointment')
+               
+            }
         } catch (error) {
             console.log(error);
         }
@@ -97,7 +103,7 @@ const DoctorSideNav = () => {
                                     className={({ isActive }) => (isActive ? activeLink : normalLink)}
                                 >
                                     <span className={`inline-block ${!open && 'text-2xl mt-4'}`}><BsCameraVideo /></span>
-                                    <Link className={`capitalize text-xl ${!open && 'hidden'}`}>Video consultaion</Link>
+                                    <Link className={`capitalize text-xl ${!open && 'hidden'}`}  to={'/doctor-online-appointment'}>Video consultaion</Link>
 
                                 </NavLink>
                                 <NavLink
