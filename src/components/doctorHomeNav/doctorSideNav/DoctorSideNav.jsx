@@ -20,7 +20,7 @@ import { Typography } from '@mui/material';
 
 
 
-const DoctorSideNav = () => {
+const DoctorSideNav = ({handleSidenav}) => {
 
     const navigate = useNavigate()
 
@@ -69,7 +69,7 @@ const DoctorSideNav = () => {
     const normalLink = 'flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-md text-gray-700 dark:text-gray-200 dark:hover:text-black hover:bg-light-gray m-2 overflow-y-hidden';
 
     return (
-        <div className={`flex overflow-y-hidden m-0 p-0 mr-0 gap-0 bg-dark-purple ${open ? "w-96 duration-1000" : "w-auto m-0 p-0 duration-500"} transition relative`} onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
+        <div className={`flex overflow-y-hidden m-0 p-0 mr-0 gap-0 bg-dark-purple ${open ? "w-96 duration-1000" : "w-auto m-0 p-0 duration-500"} transition relative`} onMouseEnter={() =>{ setOpen(true);handleSidenav(true)}} onMouseLeave={() =>{ setOpen(false);handleSidenav(false)}}>
             <div className="ml-3 h-screen -hidden overflow-y-hidden  md:hover:overflow-auto pb-9  gap-0 mt-5 mx-9">
                 {activeMenu && (
                     <>

@@ -5,14 +5,18 @@ import PatientDetails from '../../../components/doctorHomeNav/doctor-patients/Pa
 import { Grid } from '@mui/material'
 
 function DoctorHomePage() {
+  const [open, setOpen] = React.useState(true);
+
+  const handleSidenav = () => {
+    setOpen(!open);
+  };
   return (
     <Grid>
       <Grid><DoctorNavBar /></Grid>
       <Grid className='flex'>
         <Grid>
-        <DoctorSideNav/>
+        <DoctorSideNav  handleSidenav={handleSidenav}/>
         </Grid>
-        {/* <Grid className='flex-1 mt-4 ml-2 mr-3'><PatientDetails/> </Grid> */}
       </Grid>
     </Grid>
   )

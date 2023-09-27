@@ -25,6 +25,11 @@ import ManageDoctorSlots from './pages/doctor/doctorSlotAppointment/ManageDoctor
 import AnimationWrapper from './animationWrapper/AnimationWrapper';
 import DoctorVideoConsultationSlotBooking from './pages/doctor/doctorVideoConsultationSlotBooking/DoctorVideoConsultationSlotBooking';
 import DoctorOnlineAppointments from './pages/doctor/doctorOnlineAppointments/DoctorOnlineAppointments';
+import DoctorVideocall from './components/doctorHomeNav/doctorVideoCall/DoctorVideocall';
+import DoctorVideoLandingPage from './pages/doctor/doctorVideoLanding/DoctorVideoLandingPage';
+import { Suspense } from 'react';
+import Loader from './components/loader/Loader';
+
 
 
 function App() {
@@ -33,6 +38,7 @@ function App() {
   const [loginStatus, setLoginStatus] = useState(false)
   const [adminLoginStatus, setAdminLoginStatus] = useState(false)
   const dispatch = useDispatch(login)
+
 
 
 
@@ -48,6 +54,7 @@ function App() {
 
         
           <AnimationWrapper />
+          <Suspense fallback={<Loader />}>
        
         <Routes>
            
@@ -60,7 +67,6 @@ function App() {
           <Route path='/admin/doctor-verificcation' element={<AdiminDoctorVerification />}></Route>
           <Route path='/admin/add-department' element={<AdminAddDepartment />}></Route>
           <Route path='/admin/departments' element={<AdminAllDepartmentDetails />}></Route>
-
           <Route path='/upload' element={<Upload />}></Route>
 
           <Route path='/doctor-home' element={<DoctorHomePage />}></Route>
@@ -70,13 +76,10 @@ function App() {
           <Route path='/Doctor-manage-slots' element={<ManageDoctorSlots />}></Route>
           <Route path='/Doctor-videocall-manage-slots' element={<DoctorVideoConsultationSlotBooking />}></Route>
           <Route path='/doctor-online-appointment' element={<DoctorOnlineAppointments />}></Route>
-
-
-
+          <Route path='/doctor-video-landing' element={<DoctorVideoLandingPage />}></Route>
         </Routes>
-
+        </Suspense>
         <ToastContainer />
-
       </AppContext.Provider>
 
 

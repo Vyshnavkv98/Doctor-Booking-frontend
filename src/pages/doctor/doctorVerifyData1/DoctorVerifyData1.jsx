@@ -7,6 +7,11 @@ import { ImageList } from '@mui/material'
 import DoctorVerifyForm1 from '../../../components/doctorHomeNav/doctorVerifyForms/DoctorVerifyForm1'
 
 function DoctorVerifyData1() {
+  const [open, setOpen] = React.useState(true); 
+
+  const handleSidenav = () => {
+    setOpen(!open);
+  };
   return (
     <div>
     <div>
@@ -14,7 +19,7 @@ function DoctorVerifyData1() {
     </div>
     <div className='flex gap-0 p-0'>
       <div className='m-0 bg-green gap-0'>
-        <DoctorSideNav />
+        <DoctorSideNav  handleSidenav={handleSidenav}/>
       </div>
       <div className='flex-1'>
         <div className='flex-1 gap-0 text-2xl font-serif font-bold h-24  justify-center pt-8 m-0 px-6 bg-grey-shade shadow-sm w-full'>{'Profile'}</div>

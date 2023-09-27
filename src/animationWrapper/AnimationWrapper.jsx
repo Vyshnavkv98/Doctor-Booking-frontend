@@ -19,6 +19,7 @@ import DoctorProfile from '../pages/user/doctorProfile/DoctorProfile';
 import FindDoctorVideoConsultation from '../components/user/videoConsultation/FindDoctorVideoConsultation';
 import SearchDoctorVideoConsultation from '../pages/user/findDoctorVideo/SearchDoctorVideoConsultation';
 import DoctorListVideo from '../pages/user/findDoctorVideo/DoctorListVideo';
+import DoctorVideoLandingPage from '../pages/doctor/doctorVideoLanding/DoctorVideoLandingPage';
 
 
 
@@ -46,6 +47,7 @@ const AnimationWrapper = () => {
             <Route path='/doctor-profileinfo' element={<DoctorProfile />}></Route>
             <Route path='/video-consultation' element={<SearchDoctorVideoConsultation />}></Route>
             <Route path='/doctor-book-video-consultation' element={<DoctorListVideo />}></Route>
+            
           </Route>
       </Routes>
     </AnimatePresence>

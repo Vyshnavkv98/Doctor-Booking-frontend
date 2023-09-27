@@ -5,12 +5,17 @@ import DoctorNavBar from '../../../components/doctorHomeNav/doctorNav/DoctorNavB
 import ManageSlots from '../../../components/doctorHomeNav/doctorManageSlots/ManageSlots'
 
 function ManageDoctorSlots() {
+  const [open, setOpen] = React.useState(true); 
+
+  const handleSidenav = () => {
+    setOpen(!open);
+  };
   return (
     <Box bgcolor={'#F0F1F4'}>
       <Grid container spacing={2} display={'flex'} flexDirection={'row'} >
         <Grid item xs={1} sm={1}>
           {/* Doctor Side Nav */}
-          <DoctorSideNav />
+          <DoctorSideNav  handleSidenav={handleSidenav}/>
         </Grid>
         <Grid item xs={11} sm={11}>
           {/* Doctor NavBar */}

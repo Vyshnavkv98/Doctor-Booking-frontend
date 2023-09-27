@@ -12,6 +12,7 @@ import { firebaseConfig } from './firebase';
 import { ContextProvider } from './context/ContextProvider';
 import store, { persistor } from './store';
 import { PersistGate } from 'redux-persist/integration/react';
+import { SocketProvider } from './context/SocketProvider';
 initializeApp(firebaseConfig);
 
 
@@ -21,7 +22,9 @@ root.render(
     <ContextProvider>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
+          <SocketProvider>
           <App />
+          </SocketProvider>
         </PersistGate>
       </Provider>
     </ContextProvider>
