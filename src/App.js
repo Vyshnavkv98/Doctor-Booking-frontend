@@ -29,6 +29,7 @@ import DoctorVideocall from './components/doctorHomeNav/doctorVideoCall/DoctorVi
 import DoctorVideoLandingPage from './pages/doctor/doctorVideoLanding/DoctorVideoLandingPage';
 import { Suspense } from 'react';
 import Loader from './components/loader/Loader';
+import DoctorRoom from './components/doctorHomeNav/doctorVideoCall/DoctorRoom';
 
 
 
@@ -77,6 +78,7 @@ function App() {
           <Route path='/Doctor-videocall-manage-slots' element={<DoctorVideoConsultationSlotBooking />}></Route>
           <Route path='/doctor-online-appointment' element={<DoctorOnlineAppointments />}></Route>
           <Route path='/doctor-video-landing' element={<DoctorVideoLandingPage />}></Route>
+          <Route path='/doctor-room/:roomid' element={<DoctorRoom />}></Route>
         </Routes>
         </Suspense>
         <ToastContainer />

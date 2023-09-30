@@ -6,11 +6,13 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import {useSelector} from 'react-redux'
 import {useSocket} from '../../../context/SocketProvider'
 
+
 function DoctorVideocall() {
 
-    const socket=useSocket()
 
+    const socket=useSocket()
     const [userData, setUserData] = useState(null)
+
    
     const data= useSelector(state=>state.videocall.videocalldata)       
 
@@ -26,6 +28,18 @@ function DoctorVideocall() {
     const handleConnect = useCallback(() => {
      socket.emit('Room:join',{email,room})
     },[email,room,socket])
+
+    const handleJoinRoom=useCallback((data)=>{
+        const {email,room}=data
+        navigate(`/doctor-room/${room}`)
+    },[])
+
+    useEffect(()=>{ 
+   socket.on("Room:join",handleJoinRoom)
+   return ()=>{
+    socket.off('Room:join',handleJoinRoom)
+    }
+    },[socket])
     return (
         <Box sx={{backgroundImage: `url(${img})`, width: '100%', height: '100%', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }} display={'flex'}>
 

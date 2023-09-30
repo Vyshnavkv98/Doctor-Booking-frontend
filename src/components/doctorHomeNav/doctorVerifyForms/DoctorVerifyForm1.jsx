@@ -21,6 +21,7 @@ import { toast } from "react-toastify"
 import { useNavigate } from 'react-router-dom';
 import axios from '../../../axios/axios'
 import { useDispatch, useSelector } from 'react-redux';
+import {loginDoctor} from '../../../redux/doctor'
 
 
 
@@ -28,6 +29,7 @@ const defaultTheme = createTheme();
 
 export default function DoctorVerifyForm1() {
 
+  const dispatch=useDispatch()
   const doctor = useSelector(state => state.doctor.doctor?.doctor);
 
 
@@ -129,7 +131,7 @@ export default function DoctorVerifyForm1() {
             ...values, _id: doctor?._id, imgUrl: secureUrls[0], image: secureUrls[1]
           }
           const response = await axios.post('verifydata', doctorDatas)
-          if (response) useDispatch((loginDoctor(response.data.doctor)))
+          if (response) dispatch((loginDoctor(response.data.doctor)))
           if (doctor?.isVerified) {
             navigate('/doctor-home')
           }
