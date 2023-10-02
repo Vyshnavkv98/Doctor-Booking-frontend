@@ -65,6 +65,11 @@ const navigate=useNavigate()
       navigate('/video-consultation')
       
     }
+    if(title==='Patient Record'){
+      console.log(title);
+      navigate('/patient-record-video')
+      
+    }
 
    } catch (error) {
     console.log(error);

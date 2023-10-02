@@ -19,15 +19,15 @@ initializeApp(firebaseConfig);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
+  <SocketProvider>
     <ContextProvider>
       <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <SocketProvider>
+        <PersistGate loading={null} persistor={persistor}>     
           <App />
-          </SocketProvider>
         </PersistGate>
       </Provider>
     </ContextProvider>
+    </SocketProvider>
   </BrowserRouter>
 );
 

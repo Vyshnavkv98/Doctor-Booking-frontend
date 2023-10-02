@@ -34,7 +34,7 @@ function LoginLanding() {
         <img src={img2} alt="" className='absolute w-full h-3/5 top-14 pt-1 -z-10 ' />
         <section class="bg-transparent z-30 ">
           
-        <div class="grid py-8 px-4 mx-auto max-w-screen-xl lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 bg-transparent z-10">
+        <div class="grid  px-4 mx-auto max-w-screen-xl  xl:gap-0 lg:py-12 lg:grid-cols-12 bg-transparent z-10">
             <div class="place-self-center mr-auto lg:col-span-7 mt-7">
                 <h1 class="mb-4 max-w-2xl text-4xl font-extrabold leading-none md:text-5xl xl:text-6xl dark:text-white">We help patients live a healthy, longer life</h1>
                 <p class="mb-6 max-w-2xl font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">Affordable and effective health care from liscenced providers, in-person or online.</p>

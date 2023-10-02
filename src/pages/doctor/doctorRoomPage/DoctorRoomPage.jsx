@@ -1,21 +1,12 @@
 import React, { useState } from 'react'
-import DoctorVideocall from '../../../components/doctorHomeNav/doctorVideoCall/DoctorVideocall'
 import { Box, Grid } from '@mui/material'
-import TopNavBar from '../../../components/topNavBar/TopNavBar'
-import SideNavBar from '../../../components/sidenavbar/SideNavBar'
 import Footer from '../../../components/user/footer/Footer'
 import DoctorSideNav from '../../../components/doctorHomeNav/doctorSideNav/DoctorSideNav'
 import DoctorNavBar from '../../../components/doctorHomeNav/doctorNav/DoctorNavBar'
-import { useLocation } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import DoctorRoom from '../../../components/doctorHomeNav/doctorVideoCall/DoctorRoom'
 
-function DoctorVideoLandingPage() {
- 
+function DoctorRoomPage() {
     const [open, setOpen] = React.useState(true); 
-
-    const email=useSelector(state=>state.doctor.doctor.doctor.email)
- 
-
   const handleSidenav = () => {
     setOpen(!open);
   };
@@ -30,23 +21,21 @@ function DoctorVideoLandingPage() {
         <Grid item position="fixed" mt="5rem" xs={open ? 3 : 1}>
           <DoctorSideNav handleSidenav={handleSidenav} />
         </Grid>
-
         <Grid
           item
           width="100%"
           display="flex"
           flexDirection="column"
           ml={open ? '7rem' : '25rem'}
+          height={'100vh'}
+          bgcolor={'black'}
           marginTop="6rem"
         >
-          <DoctorVideocall email={email} />
-          <Grid mt={3}>
-            <Footer />
-          </Grid>
+          <DoctorRoom />
         </Grid>
       </Grid>
     </Box>
   );
 };
 
-export default DoctorVideoLandingPage
+export default DoctorRoomPage

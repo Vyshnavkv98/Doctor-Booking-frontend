@@ -5,21 +5,20 @@ import { AnimatePresence } from 'framer-motion';
 import LoginPage from '../pages/LoginPage'
 import Home from '../pages/HomePage';
 
-import Login from '../components/login/Login';
 import Signup from '../pages/Signup';
 import FindDoctor from '../pages/doctor/findDoctor/FindDoctor';
 import AppointmentConfirmation from '../pages/user/appointment/AppointmentConfirmation'
-import Profile from '../components/profile/Profile';
 import ListAllDoctor from '../pages/user/doctorList/ListAllDoctor';
 import ProfilePage from '../pages/user/ProfilePage';
 import {ProtectedRoute} from '../services/ProtectedRouter'
 import PaymentSuccess from '../components/user/payment/PaymentSuccess';
-import ConfirmAppointment from '../components/modal/ConfirmAppointment';
 import DoctorProfile from '../pages/user/doctorProfile/DoctorProfile';
-import FindDoctorVideoConsultation from '../components/user/videoConsultation/FindDoctorVideoConsultation';
 import SearchDoctorVideoConsultation from '../pages/user/findDoctorVideo/SearchDoctorVideoConsultation';
 import DoctorListVideo from '../pages/user/findDoctorVideo/DoctorListVideo';
-import DoctorVideoLandingPage from '../pages/doctor/doctorVideoLanding/DoctorVideoLandingPage';
+import UserRoomPage from '../pages/user/userVideo/UserRoomPage';
+import UserVideoRecord from '../pages/user/userVideoPatientRecord/UserVideoRecord';
+import UserVideoRecordPage from '../pages/user/userPatientRecord/UserVideoRecordPage';
+import UserVideoLandingPage from '../pages/user/userVideo/UserVideoLandingPage';
 
 
 
@@ -47,6 +46,9 @@ const AnimationWrapper = () => {
             <Route path='/doctor-profileinfo' element={<DoctorProfile />}></Route>
             <Route path='/video-consultation' element={<SearchDoctorVideoConsultation />}></Route>
             <Route path='/doctor-book-video-consultation' element={<DoctorListVideo />}></Route>
+            <Route path='/user-video-landing' element={<UserVideoLandingPage />}></Route>
+            <Route path='/patient-record-video' element={<UserVideoRecordPage />}></Route>
+            <Route path='/user-room/:roomid' element={<UserRoomPage />}></Route>
             
           </Route>
       </Routes>

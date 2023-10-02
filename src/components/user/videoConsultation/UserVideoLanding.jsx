@@ -1,20 +1,20 @@
 import { Grid, Box, Typography, Button, Paper } from '@mui/material'
 import React, { useEffect,useState,useCallback } from 'react'
 import img from '../../../assets/videocall1.png'
-import img1 from '../../../assets/avatar.svg'
 import { useLocation, useNavigate } from 'react-router-dom'
 import {useSelector} from 'react-redux'
 import {useSocket} from '../../../context/SocketProvider'
 
 
-function DoctorVideocall(props) {
+function UserVideoLanding(props) {
 
 
     const socket=useSocket()
     const [userData, setUserData] = useState(null)
 
    
-    const data= useSelector(state=>state.videocall.videocalldata)       
+    const data= useSelector(state=>state.videocall.videocalldata)  
+    
 
     useEffect(() => {
         setUserData({...data})
@@ -31,8 +31,8 @@ function DoctorVideocall(props) {
 
     const handleJoinRoom=useCallback((data)=>{
         const {email,room}=data
-        console.log(data,'from doctor landing');
-        navigate(`/doctor-room/${room}`)
+        console.log(data);
+        navigate(`/user-room/${room}`)
     },[])
 
     useEffect(()=>{ 
@@ -69,29 +69,8 @@ function DoctorVideocall(props) {
 
 
             </Grid>
-            <Grid position={'absolute'} right={'15rem'} top={'28rem'} sx={{ backgroundColor: 'transparent' }}>
-                <Paper variant='outlined' sx={{ width: '20rem', backgroundColor: 'transparent', display: 'flex', flexDirection: 'column', alignItems: 'center', }} >
-                    <img src={img1} width={'50%'} height={'60%'} alt={img} />
-
-                    <Typography color={'white'} sx={{ fontSize: 25, fontWeight: 500, margin: '0.5rem' }}>
-                        {userData?.name}
-                    </Typography>
-                    <Typography color={'white'} sx={{ fontSize: 20, fontWeight: 500, margin: '0.5rem' }}>
-                        {userData?.email}
-                    </Typography>
-                    <Typography color={'white'} sx={{ fontSize: 20, fontWeight: 500, margin: '0.5rem' }}>
-                        {userData?.mobile}
-                    </Typography>
-                    <Typography color={'white'} sx={{ fontSize: 30, fontWeight: 550, margin: '0.5rem' }}>
-                        {userData?.time}
-                    </Typography>
-                    <Typography color={'white'} sx={{ fontSize: 20, fontWeight: 500, margin: '0.5rem' }}>
-                        {userData?.date}
-                    </Typography>
-                </Paper>
-            </Grid>
         </Box>
     )
 }
 
-export default DoctorVideocall
+export default UserVideoLanding
