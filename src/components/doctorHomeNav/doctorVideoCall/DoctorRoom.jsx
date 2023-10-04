@@ -4,6 +4,10 @@ import ReactPlayer from 'react-player';
 import { useSocket } from '../../../context/SocketProvider';
 import peer from '../../../services/peer';
 import CallEndIcon from '@mui/icons-material/CallEnd';
+import MicIcon from '@mui/icons-material/Mic';
+import MicOffIcon from '@mui/icons-material/MicOff';
+import VideoCameraFrontIcon from '@mui/icons-material/VideoCameraFront';
+import VideocamOffIcon from '@mui/icons-material/VideocamOff';
 
 function DoctorRoom() {
   const [mystream, setMyStream] = useState(null);
@@ -12,9 +16,9 @@ function DoctorRoom() {
   const socket = useSocket();
 
 
-  // const handleCallUser = useCallback(async () => {
+  // const handleCallUsers = useCallback(async () => {
   //   if (callActive) {
-  //     myStream.getTracks().forEach((track) => track.stop());
+  //     mystream.getTracks().forEach((track) => track.stop());
   //     setMyStream(null);
   //     socket.emit('call:end', { to: remoteSocketId })
   //     setCallActive(false)
@@ -42,7 +46,7 @@ function DoctorRoom() {
   //     setMyStream(stream)
   //     setCallActive(true)
   //   }
-  // }, [appoint, callActive, docToken, myStream, navigate, remoteSocketId, socket, value])
+  // }, [appoint, callActive, docToken, mystream, navigate, remoteSocketId, socket, value])
 
 
 
@@ -168,9 +172,21 @@ function DoctorRoom() {
           <CallEndIcon fontSize='2rem' color='red' />
         </Grid>
       </Grid>
-      {mystream && <Button onClick={sendStream}>send stream</Button>
+      {mystream && <Button onClick={()=>sendStream}>send stream</Button>
       }
+      <Grid spacing={2} display={'flex'} alignItems={'center'} width={'100%'} justifyContent={'center'} mb={'2rem'}>
+      <Grid width={'15%'} display={'flex'} justifyContent={'space-between'}>
+      <VideoCameraFrontIcon color='primary' sx={{fontSize:'2rem',}}/>
+      <VideocamOffIcon color='error' sx={{fontSize:'2rem',}}/>
+      <CallEndIcon sx={{bgcolor:'red',fontSize:'2.5rem',color:'white',borderRadius:'50%' ,}} />
+      <MicOffIcon color='error' sx={{fontSize:'2rem',}}/>
+      <MicIcon color='primary' sx={{fontSize:'2rem',}}/>
+      
+      </Grid>
+      </Grid>
+
     </Grid>
+
   );
 }
 

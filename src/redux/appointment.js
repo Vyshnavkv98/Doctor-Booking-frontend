@@ -13,5 +13,5 @@ import { createSlice } from "@reduxjs/toolkit";
     }
 })
 
-export const{setSerchKeyWords}=appointmentSlice.actions
+export const{appointments}=appointmentSlice.actions
 export default appointmentSlice.reducer

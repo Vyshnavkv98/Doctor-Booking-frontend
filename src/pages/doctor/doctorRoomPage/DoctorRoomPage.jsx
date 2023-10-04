@@ -11,6 +11,8 @@ function DoctorRoomPage() {
     setOpen(!open);
   };
 
+
+
   return (
     <Box display="flex" flexDirection="column">
       <Grid item position="fixed" width="100%" zIndex={1}>
@@ -18,7 +20,7 @@ function DoctorRoomPage() {
       </Grid>
 
       <Grid container display="flex">
-        <Grid item position="fixed" mt="5rem" xs={open ? 3 : 1}>
+        <Grid item position="fixed" mt="5rem" >
           <DoctorSideNav handleSidenav={handleSidenav} />
         </Grid>
         <Grid

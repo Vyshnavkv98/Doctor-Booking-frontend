@@ -13,30 +13,49 @@ import ConfirmationModal from '../../../components/modal/ConfirmationModal'
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import {setVideocalldata} from '../../../redux/videocall'
+import { setVideocalldata } from '../../../redux/videocall'
 import { useSocket } from '../../../context/SocketProvider';
+import { appointments } from '../../../redux/appointment'
 
 export default function UserVideoRecord(props) {
-  const dispatch=useDispatch()
-  const socket=useSocket()
-  const[room,setRoom]=React.useState()
+  const dispatch = useDispatch()
+  const socket = useSocket()
+  const [room, setRoom] = React.useState()
   const [appointments, setAppointments] = React.useState(null)
   const [modalOpen, setModalOpen] = React.useState(false)
   const [status, setStatus] = React.useState(false)
   const [id, setId] = React.useState(false)
+  const [refresh, setRefresh] = React.useState(false)
+
+  const handleCancel = async (appointmentId) => {
+    try {
+      const response = await axios.post("/cancel-appointment", { appointmentId: appointmentId })
+      console.log(response.data.appointmentData);
+      if (response.status == 201) {
+        setRefresh(!refresh)
+        toast.success('Appointment canceled', {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 2000
+        })
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
+  }
 
   const { post } = props;
   const navigate = useNavigate()
   const handleJoinRoom = React.useCallback((data) => {
     // const { email, room } = data;
-    console.log('Received data from Room:join event:', data,'daaata');
+    console.log('Received data from Room:join event:', data, 'daaata');
     // navigate(`/doctor-room/${room}`);
   }, [socket]);
-  
+
   React.useEffect(() => {
     console.log('Setting up listener for Room:join event');
-    socket.on('Room:join',()=>{console.log('haiiii')}, handleJoinRoom);
-  
+    socket.on('Room:join', () => { console.log('haiiii') }, handleJoinRoom);
+
     return () => {
       console.log('Cleaning up listener for Room:join event');
       socket.off('Room:join', handleJoinRoom);
@@ -50,7 +69,7 @@ export default function UserVideoRecord(props) {
         setAppointments([...res.data.appointments])
       }
     })()
-  }, [])
+  }, [refresh])
   console.log(appointments)
   const openModal = () => {
     setModalOpen(true);
@@ -60,29 +79,29 @@ export default function UserVideoRecord(props) {
     setModalOpen(false);
   };
 
-//   const handleConfirm = async () => {
-//     const res = await axios.post("/confirm-video-consultation-appointment", { status: 'confirmed', id: id })
-//     if (res.status == 200) {
-//       setStatus(true)
-//       toast.success('updated successfully', {
-//         position: toast.POSITION.TOP_CENTER,
-//         autoClose: 3000
-//       })
-//     }
-//   }
+  //   const handleConfirm = async () => {
+  //     const res = await axios.post("/confirm-video-consultation-appointment", { status: 'confirmed', id: id })
+  //     if (res.status == 200) {
+  //       setStatus(true)
+  //       toast.success('updated successfully', {
+  //         position: toast.POSITION.TOP_CENTER,
+  //         autoClose: 3000
+  //       })
+  //     }
+  //   }
 
-  const handleVideocall = (name,email,reason,date,time,mobile,user,_id) => {
-    const data={name,email,reason,date,time,mobile,user,_id}
-   dispatch(setVideocalldata(data))
+  const handleVideocall = (name, email, reason, date, time, mobile, user, _id) => {
+    const data = { name, email, reason, date, time, mobile, user, _id }
+    dispatch(setVideocalldata(data))
     navigate('/user-video-landing')
   }
 
 
 
   return (
-    <Grid item xs={12} md={6}  width={'100%'} display={'flex'} flexDirection={'column'} mt={0} alignItems={'center'}>
+    <Grid item xs={12} md={6} width={'100%'} display={'flex'} flexDirection={'column'} mt={0} alignItems={'center'}>
       {appointments && appointments.map((appointment, index) => (
-        <CardActionArea key={index} component="a" href="#" sx={{ width: '85%', marginTop:'0rem' }} >
+        <CardActionArea key={index} component="a" href="#" sx={{ width: '85%', marginTop: '0rem' }} >
           <Card sx={{ display: 'flex', marginTop: '1rem' }}>
 
 
@@ -127,11 +146,17 @@ export default function UserVideoRecord(props) {
             </CardContent>
             <Grid margin={2} display={'flex'} alignItems={'center'}>
 
-             <Button variant='outlined'>Cancel</Button>
-             {
-             room &&  <Button variant='contained' color='success' onClick={() => { return setModalOpen(true), setId(appointment._id), handleVideocall(appointment.name,appointment.email,appointment.reason,appointment.date,appointment.time,appointment.mobile,appointment.user,appointment._id) }}>Accept</Button>
-             }
-              <ConfirmationModal open={modalOpen} onClose={closeModal}  />
+              {appointment.status === 'Cancelled' ? <Button variant='contained' color='primary' disabled >canceled</Button> : (
+                <>
+                  <Button variant='outlined' onClick={() => handleCancel(appointment._id)}>Cancel</Button>
+                  {
+                    !room && <Button variant='contained' sx={{ ml: '0.5rem' }} color='success' onClick={() => { return setModalOpen(true), setId(appointment._id), handleVideocall(appointment.name, appointment.email, appointment.reason, appointment.date, appointment.time, appointment.mobile, appointment.user, appointment._id) }}>Accept</Button>
+                  }
+                </>
+              )
+              }
+
+              <ConfirmationModal open={modalOpen} onClose={closeModal} />
             </Grid>
             <CardMedia
               component="img"

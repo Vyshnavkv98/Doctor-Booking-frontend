@@ -31,6 +31,7 @@ import { Suspense } from 'react';
 import Loader from './components/loader/Loader';
 import DoctorRoom from './components/doctorHomeNav/doctorVideoCall/DoctorRoom';
 import DoctorRoomPage from './pages/doctor/doctorRoomPage/DoctorRoomPage';
+import DoctorPrescription from './components/doctorHomeNav/doctorDescription/DoctorPrescription';
 
 
 
@@ -70,6 +71,7 @@ function App() {
           <Route path='/admin/add-department' element={<AdminAddDepartment />}></Route>
           <Route path='/admin/departments' element={<AdminAllDepartmentDetails />}></Route>
           <Route path='/upload' element={<Upload />}></Route>
+          <Route path='/prescription' element={<DoctorPrescription />}></Route>
 
           <Route path='/doctor-home' element={<DoctorHomePage />}></Route>
           <Route path='/doctor-login' element={<DoctorLogin />}></Route>
