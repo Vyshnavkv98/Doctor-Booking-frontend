@@ -19,6 +19,7 @@ import UserRoomPage from '../pages/user/userVideo/UserRoomPage';
 import UserVideoRecord from '../pages/user/userVideoPatientRecord/UserVideoRecord';
 import UserVideoRecordPage from '../pages/user/userPatientRecord/UserVideoRecordPage';
 import UserVideoLandingPage from '../pages/user/userVideo/UserVideoLandingPage';
+import DoctorSuccess from '../components/doctorHomeNav/doctorNav/doctorVideoSuccess/DoctorSuccess';
 
 
 
@@ -48,7 +49,8 @@ const AnimationWrapper = () => {
             <Route path='/doctor-book-video-consultation' element={<DoctorListVideo />}></Route>
             <Route path='/user-video-landing' element={<UserVideoLandingPage />}></Route>
             <Route path='/patient-record-video' element={<UserVideoRecordPage />}></Route>
-            <Route path='/user-room/:roomid' element={<UserRoomPage />}></Route>
+            <Route path='/user-room/:roomid' element={<UserRoomPage value={'user'}/>}></Route>
+            <Route path='/user/video-success' element={<DoctorSuccess value={'user'}/>}></Route>
             
           </Route>
       </Routes>

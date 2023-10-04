@@ -13,16 +13,15 @@ import ConfirmationModal from '../../modal/ConfirmationModal'
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import {setVideocalldata} from '../../../redux/videocall'
+import { setVideocalldata } from '../../../redux/videocall'
 
 export default function PatientDetails(props) {
-  const dispatch=useDispatch()
+  const dispatch = useDispatch()
   const [appointments, setAppointments] = React.useState(null)
   const [modalOpen, setModalOpen] = React.useState(false)
   const [status, setStatus] = React.useState(false)
   const [id, setId] = React.useState(false)
 
-  const { post } = props;
   const navigate = useNavigate()
 
   React.useEffect(() => {
@@ -52,17 +51,20 @@ export default function PatientDetails(props) {
       })
     }
   }
+  const handlePrescription=()=>{
+    navigate('/doctor-prescription')
+  }
 
-  const handleVideocall = (name,email,reason,date,time,mobile,user,_id) => {
-    const data={name,email,reason,date,time,mobile,user,_id}
-   dispatch(setVideocalldata(data))
+  const handleVideocall = (name, email, reason, date, time, mobile, user, _id) => {
+    const data = { name, email, reason, date, time, mobile, user, _id }
+    dispatch(setVideocalldata(data))
     navigate('/doctor-video-landing')
   }
 
   return (
-    <Grid item xs={12} md={6}  width={'100%'} display={'flex'} flexDirection={'column'} mt={0} alignItems={'center'}>
+    <Grid item xs={12} md={6} width={'100%'} display={'flex'} flexDirection={'column'} mt={0} alignItems={'center'}>
       {appointments && appointments.map((appointment, index) => (
-        <CardActionArea key={index} component="a" href="#" sx={{ width: '85%', marginTop:'0rem' }} >
+        <CardActionArea key={index} component="a" href="#" sx={{ width: '85%', marginTop: '0rem' }} >
           <Card sx={{ display: 'flex', marginTop: '1rem' }}>
 
 
@@ -107,9 +109,21 @@ export default function PatientDetails(props) {
             </CardContent>
             <Grid margin={2} display={'flex'} alignItems={'center'}>
 
-              {appointment.status === "pending" ? <Button variant='outlined' onClick={() => { return setModalOpen(true), setId(appointment._id) }}>Confirm</Button> :
-                <Button variant='outlined' onClick={() => { return setModalOpen(true), setId(appointment._id), handleVideocall(appointment.name,appointment.email,appointment.reason,appointment.date,appointment.time,appointment.mobile,appointment.user,appointment._id) }}>Call</Button>}
+              {appointment.status === "pending" ? <> (
+
+                <Button variant='outlined' onClick={() => { return setModalOpen(true), setId(appointment._id) }}>Confirm</Button>
+
+                ) </> : (
+                <>
+                  {appointment.status === "completed" ? (
+                    <Button variant='outlined' onClick={() => handlePrescription(appointment._id)}>Prescription</Button>
+                  ) : (
+                    <Button variant='outlined' onClick={() => { return setModalOpen(true), setId(appointment._id), handleVideocall(appointment.name, appointment.email, appointment.reason, appointment.date, appointment.time, appointment.mobile, appointment.user, appointment._id) }}>Call</Button>
+                  )}
+                </>
+              )}
               <ConfirmationModal open={modalOpen} onClose={closeModal} onConfirm={() => handleConfirm()} />
+
             </Grid>
             <CardMedia
               component="img"

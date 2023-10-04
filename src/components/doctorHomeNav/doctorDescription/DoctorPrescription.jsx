@@ -10,10 +10,14 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { toast } from 'react-toastify';
+import { useSelector } from 'react-redux';
+import axios from '../../../axios/axios';
 
 function DoctorPrescription() {
   const [prescription, setPrescription] = useState({})
   const [allPrescription, setAllPrescription] = useState([])
+
+  const videoCallData= useSelector(state=>state.videocall.videocalldata) 
 
   const HandleChange = (e) => {
     const { value, name } = e.target
@@ -29,16 +33,11 @@ function DoctorPrescription() {
       }))
   }
 
-const handleSubmit=useCallback(async(e)=>{
-  e.preventDefault()
-  
 
-},[])
 
   const handleSetAllPrescription = () => {
     let flag=true
     const exists = allPrescription.some((existingPrescription) => existingPrescription.medicationName === prescription.medicationName);
-    console.log(Object.keys(prescription),'pres');
    if(Object.keys(prescription).length===0){
     toast.error(`Can't be the field empty`, {
       position: toast.POSITION.TOP_CENTER,
@@ -46,7 +45,6 @@ const handleSubmit=useCallback(async(e)=>{
     })
    }else {
     for(let item in prescription){
-      console.log(prescription,'item');
      if( item.trim()==' '){
       flag=false
       toast.error(`Can't be the field empty`, {
@@ -69,14 +67,22 @@ const handleSubmit=useCallback(async(e)=>{
   };
 
 
+
+
   const handleDelete = useCallback((row) => {
-    console.log(row);
     const updatedAllPrescription = allPrescription.filter((item) => {
       return item !== row
     })
     setAllPrescription([...updatedAllPrescription])
   }, [allPrescription])
-  console.log(prescription);
+
+
+  const handleSubmit=useCallback(async(e)=>{
+    e.preventDefault()
+    const response=await axios.post('/add-prescription',{id:videoCallData._id,allPrescription:allPrescription,prescription:prescription})
+    console.log(response);
+  
+  },[])
 
   return (
     <Box
@@ -84,13 +90,14 @@ const handleSubmit=useCallback(async(e)=>{
         backgroundImage: `url(${bimg})`,
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
-        minWidth: '100vw',
+        minWidth: '100%',
         minHeight: '115vh',
       }}
-      minWidth={'100vw'}
+      minWidth={'90%'}
       minHeight={'100vh'}
     >
       <Grid display={'flex'} justifyContent={'center'} flexDirection={'column'} alignItems={'center'} >
+      
         <Paper sx={{ bgcolor: 'green', width: '95%', height: '50px', mt: '2rem' }}  >
           <Grid ml={'2rem'}>
             <Typography variant='subtitle1' color={'white'} fontWeight={550} fontSize={'1.5rem'}>
@@ -103,11 +110,11 @@ const handleSubmit=useCallback(async(e)=>{
           <Grid item spacing={2} display={'flex'} width={'100%'}>
             <Grid sx={6} md={6} width={'50%'} m={'1rem'} mt={'2.5rem'} >
               <FormLabel sx={{ color: 'white' }}>prescriptionId</FormLabel>
-              <TextField placeholder='prescriptionId' label='prescriptionId' sx={{ color: 'white', width: '100%', bgcolor: 'rgba(255,255,255,0.6)', borderRadius: '10px' }} disabled></TextField>
+              <TextField placeholder='prescriptionId' label='prescriptionId' sx={{ color: 'black', width: '100%', bgcolor: 'rgba(255,255,255,0.6)', borderRadius: '10px', }} value={videoCallData?._id} disabled></TextField>
             </Grid>
             <Grid sx={6} md={6} width={'50%'} m={'1rem'} mt={'2.5rem'} >
               <FormLabel sx={{ color: 'white' }}>name</FormLabel>
-              <TextField label='name' placeholder='name' sx={{ color: 'white', width: '100%', bgcolor: 'rgba(255,255,255,0.6)', borderRadius: '10px' }} disabled></TextField>
+              <TextField label='name' placeholder='name' sx={{ color: 'black', width: '100%', bgcolor: 'rgba(255,255,255,0.6)', borderRadius: '10px' }} value={videoCallData?.name.toUpperCase()} disabled></TextField>
             </Grid>
 
           </Grid>
@@ -135,7 +142,6 @@ const handleSubmit=useCallback(async(e)=>{
           </Grid>
           <Grid m={2} style={{ bgcolor: 'rgba(255,255,255,0.6)' }}>
             {allPrescription.length > 0 &&
-
               <TableContainer component={Paper} sx={{ height: '150px', bgcolor: 'rgba(255,255,255,0.6)' }} >
                 <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                   <TableHead>
@@ -184,10 +190,11 @@ const handleSubmit=useCallback(async(e)=>{
           </Grid>
           <Grid>
             <Grid display={'flex'} justifyContent={'center'} m={2}>
-              <Button variant='contained' color='success' fullWidth onSubmit={(e)=>handleSubmit(e)}>Submit</Button>
+              <Button variant='contained' color='success' sx={{height:'3rem'}} fullWidth type='submit' onClick={(e)=>handleSubmit(e)}>Submit</Button>
             </Grid>
           </Grid>
         </Paper>
+      
       </Grid>
     </Box>
   )

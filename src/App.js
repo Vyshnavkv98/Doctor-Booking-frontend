@@ -32,6 +32,8 @@ import Loader from './components/loader/Loader';
 import DoctorRoom from './components/doctorHomeNav/doctorVideoCall/DoctorRoom';
 import DoctorRoomPage from './pages/doctor/doctorRoomPage/DoctorRoomPage';
 import DoctorPrescription from './components/doctorHomeNav/doctorDescription/DoctorPrescription';
+import DoctorPrescriptionPage from './pages/doctor/doctorPrescription/DoctorPrescriptionPage';
+import DoctorSuccess from './components/doctorHomeNav/doctorNav/doctorVideoSuccess/DoctorSuccess';
 
 
 
@@ -71,7 +73,7 @@ function App() {
           <Route path='/admin/add-department' element={<AdminAddDepartment />}></Route>
           <Route path='/admin/departments' element={<AdminAllDepartmentDetails />}></Route>
           <Route path='/upload' element={<Upload />}></Route>
-          <Route path='/prescription' element={<DoctorPrescription />}></Route>
+       
 
           <Route path='/doctor-home' element={<DoctorHomePage />}></Route>
           <Route path='/doctor-login' element={<DoctorLogin />}></Route>
@@ -81,7 +83,9 @@ function App() {
           <Route path='/Doctor-videocall-manage-slots' element={<DoctorVideoConsultationSlotBooking />}></Route>
           <Route path='/doctor-online-appointment' element={<DoctorOnlineAppointments />}></Route>
           <Route path='/doctor-video-landing' element={<DoctorVideoLandingPage />}></Route>
-          <Route path='/doctor-room/:roomid' element={<DoctorRoomPage />}></Route>
+          <Route path='/doctor-room/:roomid' element={<DoctorRoomPage value={'doctor'} />}></Route>
+          <Route path='/doctor-prescription' element={<DoctorPrescriptionPage />}></Route>
+          <Route path='/doctor-success' element={<DoctorSuccess value={'doctor'}/>}></Route>
         </Routes>
         </Suspense>
         <ToastContainer />

@@ -5,7 +5,9 @@ import DoctorSideNav from '../../../components/doctorHomeNav/doctorSideNav/Docto
 import DoctorNavBar from '../../../components/doctorHomeNav/doctorNav/DoctorNavBar'
 import DoctorRoom from '../../../components/doctorHomeNav/doctorVideoCall/DoctorRoom'
 
-function DoctorRoomPage() {
+
+function DoctorRoomPage({value}) {
+
     const [open, setOpen] = React.useState(true); 
   const handleSidenav = () => {
     setOpen(!open);
@@ -33,7 +35,7 @@ function DoctorRoomPage() {
           bgcolor={'black'}
           marginTop="6rem"
         >
-          <DoctorRoom />
+          <DoctorRoom value={value}/>
         </Grid>
       </Grid>
     </Box>
