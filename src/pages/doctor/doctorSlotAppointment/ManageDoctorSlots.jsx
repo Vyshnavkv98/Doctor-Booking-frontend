@@ -14,11 +14,9 @@ function ManageDoctorSlots() {
     <Box bgcolor={'#F0F1F4'}>
       <Grid container spacing={2} display={'flex'} flexDirection={'row'} >
         <Grid item xs={1} sm={1}>
-          {/* Doctor Side Nav */}
           <DoctorSideNav  handleSidenav={handleSidenav}/>
         </Grid>
         <Grid item xs={11} sm={11}>
-          {/* Doctor NavBar */}
           <Grid container  display={'flex'} justifyContent={'center'} >
             <Grid item xs={12}>
               <DoctorNavBar />
@@ -27,7 +25,7 @@ function ManageDoctorSlots() {
               <Grid >
                 <Card>
                   <Typography margin={2}>
-                    Click any slots to mark as unavailabe
+                    Click any slots to mark as availabe
                   </Typography>
                 </Card>
               </Grid>
@@ -38,7 +36,7 @@ function ManageDoctorSlots() {
                   <ManageSlots />
                   <Grid display={'flex'} flexDirection={'row'} justifyContent={'space-between'}> 
                   <Typography margin={2}>
-                    Click any slots to mark as unavailabe
+                    Click any slots to mark as availabe
                   </Typography>
                  
 

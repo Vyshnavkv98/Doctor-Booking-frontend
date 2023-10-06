@@ -51,6 +51,11 @@ const DoctorSideNav = ({handleSidenav}) => {
                 navigate('/Doctor-manage-slots')
                
             }
+            if (item === 'Manage video Slot') {
+
+                navigate('/Doctor-videocall-manage-slots')
+               
+            }
             if (item === 'Video consultaion') {
                 console.log('fffff');
 
@@ -134,6 +139,13 @@ const DoctorSideNav = ({handleSidenav}) => {
                                     <Link className={`capitalize text-xl ${!open && 'hidden'}`} to={'/doctor-manage-slots'}>Manage Slot</Link>
 
                                 </NavLink>
+                                <NavLink
+                                    className={({ isActive }) => (isActive ? activeLink : normalLink)}
+                                >
+                                    <span className={`inline-block ${!open && 'text-2xl mt-4'}`}><MdManageAccounts /></span>
+                                    <Link className={`capitalize text-xl ${!open && 'hidden'}`} to={'/Doctor-videocall-manage-slots'}>Manage video Slot</Link>
+
+                                </NavLink>
 
                             </div>
                             <div >
@@ -176,13 +188,13 @@ const DoctorSideNav = ({handleSidenav}) => {
                                     <Link className={`capitalize text-xl ${!open && 'hidden'}`}>Line</Link>
 
                                 </NavLink>
-                                <NavLink
+                                {/* <NavLink
                                     className={({ isActive }) => (isActive ? activeLink : normalLink)}
                                 >
                                     <span className={`inline-block ${!open && 'text-2xl mt-4'}`}><AiOutlineBarChart /></span>
                                     <Link className={`capitalize text-xl ${!open && 'hidden'}`}>Bar</Link>
 
-                                </NavLink>
+                                </NavLink> */}
 
                             </div>
 

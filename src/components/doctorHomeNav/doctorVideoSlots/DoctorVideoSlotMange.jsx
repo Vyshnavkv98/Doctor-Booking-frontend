@@ -35,46 +35,41 @@ function DoctorVideoSlotManage() {
 
   useEffect(() => {
     if (selectedDate !== null) {
-      setVideoTimeSlots(null)
+      setVideoTimeSlots(null);
       const formattedDate = format(selectedDate?.$d, 'MMMM,dd,yyyy');
       setFormatedDate(formattedDate);
       fetchSlots(formattedDate);
-
-
     }
-  }, [selectedDate]);
-
+  }, [selectedDate, refresh]);
+  
   const fetchSlots = async (date) => {
     try {
       const res = await axios.post("/get-slots", { doctorId });
       const slots = res.data.slotsData;
-      for (let i = 0; i < slots.length; i++) {
-        if (slots[i]['date'] === date) {
-          setTimeSlot([...slots[i]['slots']]);
-          if (timeSlots) {
-            let videoTime = time.filter((times) => {
-              return timeSlots.indexOf(times) === -1
-
-            })
-            // console.log(videoTime);
-            if (videoTime) {
-              setVideoTimeSlots([...videoTime]);
-              console.log(videoTimeSlots);
-            const ind = [];
-            videoTimeSlots.forEach((slot) => {
-              return ind.push(time.indexOf(slot));
-            });
-            setSelectedButtonIndices([...ind]);
-            console.log(selectedButtonIndices);
-          }
-        }
-        }
-
+  
+      const matchingSlot = slots.find((slot) => slot.date === date);
+  
+      if (matchingSlot) {
+        setTimeSlot([...matchingSlot.slots]);
+  
+        const videoTime = time.filter((times) => !matchingSlot.slots.includes(times));
+        console.log(videoTime, 'video');
+  
+        setVideoTimeSlots([...videoTime]);
+  
+        const ind = [];
+        videoTime.forEach((slot) => {
+          ind.push(time.indexOf(slot));
+        });
+  
+        setSelectedButtonIndices([...ind]);
+        console.log(selectedButtonIndices);
       }
     } catch (error) {
       console.log(error);
     }
   };
+  
 
 
 
@@ -136,8 +131,8 @@ function DoctorVideoSlotManage() {
 
           <Grid display={'flex'} alignContent={'space-between'}>
             <Grid>
-              <Grid display={'flex'} justifyContent={'space-between'}>
-                <Typography>Morning</Typography>
+              <Grid  xs={12} md={12} display={'flex'} justifyContent={'space-between'} minWidth={'78.5vw'}>
+                <Typography color={'blue'} fontWeight={500}>Available video consultation slots</Typography>
                 <LocalizationProvider className='w-100' dateAdapter={AdapterDayjs}>
                   <DemoContainer components={['DatePicker']}>
                     <DatePicker minDate={tomorrow} value={selectedDate} onChange={(e) => handleDateChange(e)} />

@@ -12,31 +12,33 @@ function DoctorVideoConsultationSlotBooking() {
           setOpen(val)
     }
   return (
-    <Box display={'flex'} flexDirection={'column'} >
-
-            <Grid position={'fixed'} width={'100%'} zIndex={1}>
-                < DoctorNavBar/>
-            </Grid>
-
-            <Grid display={'flex'}>
-                <Grid position={'fixed'} mt={'4rem'}>
-                    <DoctorSideNav handleSidenav={handleSidenav} />
-                </Grid>
-               {open &&  <Grid width={'100%'} mt={2} display={'flex'} flexDirection={'column'} ml={'12rem'} marginTop={'7rem'} >
-                    <DoctorVideoSlotManage  />
-                    <Grid mt={25}><Footer /></Grid>
-                </Grid>}
-               {!open &&  <Grid width={'100%'} mt={2} display={'flex'} flexDirection={'column'} ml={'3rem'} marginTop={'7rem'} >
-                    <DoctorVideoSlotManage />
-                    <Grid mt={25}><Footer /></Grid>
-                </Grid>}
-                
-
-            </Grid>
-
-            
-
-        </Box>
+   
+         <Box display="flex" flexDirection="column">
+         <Grid item position="fixed" width="100%" zIndex={1}>
+           <DoctorNavBar />
+         </Grid>
+   
+         <Grid container display="flex">
+           <Grid item position="fixed" mt="2rem" xs={open ? 3 : 1}>
+             <DoctorSideNav handleSidenav={handleSidenav} />
+           </Grid>
+   
+           <Grid
+             item
+             width="100%"
+             height={'95vh'}
+             display="flex"
+             flexDirection="column"
+             ml={open ? '20rem' : '7rem'}
+             marginTop="5.5rem"
+           >
+             <DoctorVideoSlotManage  />
+             <Grid mt={3}>
+               <Footer />
+             </Grid>
+           </Grid>
+         </Grid>
+       </Box>
   )
 }
 

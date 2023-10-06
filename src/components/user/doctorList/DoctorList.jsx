@@ -106,7 +106,7 @@ function DoctorList({ doctors }) {
               </Grid>
             </Grid>
               )}
-            {isAppointmentTimeHidden && selectedDoctorIndex === index && (
+            {isAppointmentTimeHidden && selectedDoctorIndex === index && new Date(doctor?.AvailableSlots[currentIndex]?.date)>=new Date(tomorrow) &&(
               <Grid display={'flex'} alignContent={'space-between'} width={'100%'}>
                 <Grid>
                   <Grid display={'flex'} justifyContent={'space-between'} p={2} >

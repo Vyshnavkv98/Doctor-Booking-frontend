@@ -39,7 +39,7 @@ function ListAllDoctor() {
                 </Grid>
             </Grid>
 
-            <Grid item xs={10} lg={10} md={10} sx={{ paddingLeft: '2rem', paddingTop: '1rem' }} >
+            <Grid item xs={10} lg={10} md={10} sx={{ paddingLeft: '4rem', paddingTop: '1rem' }} >
                 <Grid position={'fixed'} width={'82%'} zIndex={'20'}>
                     <TopNavBar />
                 </Grid>

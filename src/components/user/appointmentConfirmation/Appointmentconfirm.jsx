@@ -48,10 +48,11 @@ function Appointmentconfirm() {
       try {
         let appointmentDetails
         if(location.state.video){
-        const appointmentData = { ...slotdata,date:location.state.date,time:location.state.time, name: values.name, mobile: values.mobile,email: values.email, reason: values.reason, fee: values.consultaionFee, userId: userData._id, doctorId: doctor._id }
+          console.log('fffff');
+        const appointmentData = { ...slotdata,date:location.state.date,time:location.state.time, name: values.name, mobile: values.mobile,email: values.email, reason: values.reason, fee: values.consultaionFee, userId: userData._id, doctorId: doctor._id,videoConsult:'true'  }
          appointmentDetails = await axios.post('/add-appointment', appointmentData)
         }else{
-          const appointmentData = { ...slotdata,date:location.state.date,time:location.state.time, name: values.name, mobile: values.mobile,email: values.email, reason: values.reason, fee: values.consultaionFee, userId: userData._id, doctorId: doctor._id,video:'true' }
+          const appointmentData = { ...slotdata,date:location.state.date,time:location.state.time, name: values.name, mobile: values.mobile,email: values.email, reason: values.reason, fee: values.consultaionFee, userId: userData._id, doctorId: doctor._id,}
          appointmentDetails = await axios.post('/add-appointment', appointmentData)
         }
 

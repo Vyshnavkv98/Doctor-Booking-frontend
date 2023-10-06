@@ -54,16 +54,16 @@ function LoginLanding() {
 
 
     <section class="bg-transparent z-30">
-        <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
-            <h2 class="mb-8 text-3xl font-extrabold tracking-tight leading-tight text-center text-gray-900 lg:mb-16 dark:text-white md:text-4xl">Find your doctor and make an appointment</h2>
-            <div class="grid grid-cols-2 gap-8 text-gray-500 sm:gap-12 md:grid-cols-3 lg:grid-cols-6 dark:text-gray-400">
+        <div class=" mx-auto max-w-screen-xl py-6 ">
+            <h2 class="mb-2  text-3xl font-extrabold tracking-tight leading-tight text-center text-gray-900 lg:mb-16 dark:text-white md:text-4xl">Find your doctor and make an appointment</h2>
+            <div class="grid grid-cols-2  text-gray-500 sm:gap-12 md:grid-cols-3 lg:grid-cols-6 dark:text-gray-400">
             </div>
         </div>
     </section>
 
     
-    <section class="bg-gray-50 dark:bg-gray-800">
-        <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+    <section class="bg-gray-50 dark:bg-gray-800 ">
+        <div class="py-8  mx-auto max-w-screen-xl sm:py-16 ">
             <div class="mb-8 max-w-screen-md lg:mb-16">
                 <h2 class="mb-4 text-4xl font-extrabold text-gray-900 dark:text-white">Designed for business teams like yours</h2>
                 <p class="text-gray-500 sm:text-xl dark:text-gray-400">Here at Flowbite we focus on markets where technology, innovation, and capital can unlock long-term value and drive economic growth.</p>

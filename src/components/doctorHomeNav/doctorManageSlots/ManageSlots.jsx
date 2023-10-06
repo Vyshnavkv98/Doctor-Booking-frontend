@@ -8,10 +8,13 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { useSelector } from 'react-redux';
 import axios from '../../../axios/axios'
 import { toast } from 'react-toastify';
+import dayjs from 'dayjs';
 
 function ManageSlots() {
 
   const doctorId = useSelector((state) => state.doctor.doctor?.doctor?._id)
+
+  const tomorrow = dayjs().add(1, 'day');
 
   const time = ["09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "18:00", "18:30", "19:00"]
   const [timeSlots, setTimeSlot] = useState([])
@@ -62,6 +65,7 @@ const handleDateChange = async (date) => {
 
 
   const slotDetails = { timeSlots, formattedDate, doctorId }
+  console.log(timeSlots);
   const handleSubmit = async (e) => {
     e.preventDefault()
     const updatedSlots = await axios.post('/add-slots', slotDetails)
@@ -85,9 +89,7 @@ const handleDateChange = async (date) => {
     color: 'red',
   };
   const handleButton = (index, time) => {
-    // setIndexes((prevalue) => {
-    //   return [...prevalue, index]
-    // })
+
 
     if (selectedButtonIndices.includes(index)) {
       setSelectedButtonIndices(
@@ -123,7 +125,7 @@ const handleDateChange = async (date) => {
                 <Typography>Morning</Typography>
                 <LocalizationProvider className='w-100' dateAdapter={AdapterDayjs}>
                   <DemoContainer components={['DatePicker']}>
-                    <DatePicker value={selectedDate} onChange={(e) => handleDateChange(e)} />
+                    <DatePicker minDate={tomorrow} value={selectedDate} onChange={(e) => handleDateChange(e)} />
                   </DemoContainer>
                 </LocalizationProvider>
               </Grid>

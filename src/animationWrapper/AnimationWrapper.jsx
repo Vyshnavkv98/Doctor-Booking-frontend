@@ -12,7 +12,6 @@ import ListAllDoctor from '../pages/user/doctorList/ListAllDoctor';
 import ProfilePage from '../pages/user/ProfilePage';
 import {ProtectedRoute} from '../services/ProtectedRouter'
 import PaymentSuccess from '../components/user/payment/PaymentSuccess';
-import DoctorProfile from '../pages/user/doctorProfile/DoctorProfile';
 import SearchDoctorVideoConsultation from '../pages/user/findDoctorVideo/SearchDoctorVideoConsultation';
 import DoctorListVideo from '../pages/user/findDoctorVideo/DoctorListVideo';
 import UserRoomPage from '../pages/user/userVideo/UserRoomPage';
@@ -20,6 +19,10 @@ import UserVideoRecord from '../pages/user/userVideoPatientRecord/UserVideoRecor
 import UserVideoRecordPage from '../pages/user/userPatientRecord/UserVideoRecordPage';
 import UserVideoLandingPage from '../pages/user/userVideo/UserVideoLandingPage';
 import DoctorSuccess from '../components/doctorHomeNav/doctorNav/doctorVideoSuccess/DoctorSuccess';
+import DoctorProfileUserSide from '../pages/user/doctorProfilePage/DoctorProfileUserSide';
+import DoctorProfile from '../components/user/doctorList/DoctorProfile';
+import AppointmentRecordTable from '../components/user/appointmentTable/AppointmentRecordTable';
+import UserAppointmentRecordPage from '../pages/user/userAppointmentsRecordPage/UserAppointmentRecordPage'
 
 
 
@@ -44,11 +47,12 @@ const AnimationWrapper = () => {
             <Route path='/doctor-book' element={<ListAllDoctor />}></Route>
             <Route path='/appointment' element={<AppointmentConfirmation />}></Route>
             <Route path='/payment-success' element={<PaymentSuccess />}></Route>
-            <Route path='/doctor-profileinfo' element={<DoctorProfile />}></Route>
+            <Route path='/doctor-profileinfo' element={<DoctorProfileUserSide />}></Route>
             <Route path='/video-consultation' element={<SearchDoctorVideoConsultation />}></Route>
             <Route path='/doctor-book-video-consultation' element={<DoctorListVideo />}></Route>
             <Route path='/user-video-landing' element={<UserVideoLandingPage />}></Route>
             <Route path='/patient-record-video' element={<UserVideoRecordPage />}></Route>
+            <Route path='/patient-record-offline' element={<UserAppointmentRecordPage />}></Route>
             <Route path='/user-room/:roomid' element={<UserRoomPage value={'user'}/>}></Route>
             <Route path='/user/video-success' element={<DoctorSuccess value={'user'}/>}></Route>
             

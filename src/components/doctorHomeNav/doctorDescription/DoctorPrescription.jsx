@@ -17,45 +17,45 @@ function DoctorPrescription() {
   const [prescription, setPrescription] = useState({})
   const [allPrescription, setAllPrescription] = useState([])
 
-  const videoCallData= useSelector(state=>state.videocall.videocalldata) 
+  const videoCallData = useSelector(state => state.videocall.videocalldata)
 
   const HandleChange = (e) => {
     const { value, name } = e.target
-    
+
     if (name.trim() === ' ') {
       toast.error(`Can't be the field empty`, {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 1500
       })
     }
-      setPrescription((prev) => ({
-        ...prev, [name]: value
-      }))
+    setPrescription((prev) => ({
+      ...prev, [name]: value
+    }))
   }
 
 
 
   const handleSetAllPrescription = () => {
-    let flag=true
+    let flag = true
     const exists = allPrescription.some((existingPrescription) => existingPrescription.medicationName === prescription.medicationName);
-   if(Object.keys(prescription).length===0){
-    toast.error(`Can't be the field empty`, {
-      position: toast.POSITION.TOP_CENTER,
-      autoClose: 1500
-    })
-   }else {
-    for(let item in prescription){
-     if( item.trim()==' '){
-      flag=false
+    if (Object.keys(prescription).length === 0) {
       toast.error(`Can't be the field empty`, {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 1500
       })
-     }
+    } else {
+      for (let item in prescription) {
+        if (item.trim() == ' ') {
+          flag = false
+          toast.error(`Can't be the field empty`, {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 1500
+          })
+        }
+      }
     }
-   }
-    
- 
+
+
     if (!exists && flag) {
       setAllPrescription((prev) => [...prev, prescription]);
     } else {
@@ -77,12 +77,20 @@ function DoctorPrescription() {
   }, [allPrescription])
 
 
-  const handleSubmit=useCallback(async(e)=>{
+  const handleSubmit = useCallback(async (e) => {
     e.preventDefault()
-    const response=await axios.post('/add-prescription',{id:videoCallData._id,allPrescription:allPrescription,prescription:prescription})
-    console.log(response);
-  
-  },[])
+    if (allPrescription.length > 0 && Object.keys(prescription).length > 0) {
+      const response = await axios.post('/add-prescription', { id: videoCallData._id, allPrescription: allPrescription, prescription: prescription })
+      console.log(response);
+      if (response.status === 200) {
+        toast.success('Prescription added', {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 2000
+        })
+      }
+    }
+
+  }, [])
 
   return (
     <Box
@@ -97,7 +105,7 @@ function DoctorPrescription() {
       minHeight={'100vh'}
     >
       <Grid display={'flex'} justifyContent={'center'} flexDirection={'column'} alignItems={'center'} >
-      
+
         <Paper sx={{ bgcolor: 'green', width: '95%', height: '50px', mt: '2rem' }}  >
           <Grid ml={'2rem'}>
             <Typography variant='subtitle1' color={'white'} fontWeight={550} fontSize={'1.5rem'}>
@@ -190,11 +198,11 @@ function DoctorPrescription() {
           </Grid>
           <Grid>
             <Grid display={'flex'} justifyContent={'center'} m={2}>
-              <Button variant='contained' color='success' sx={{height:'3rem'}} fullWidth type='submit' onClick={(e)=>handleSubmit(e)}>Submit</Button>
+              <Button variant='contained' color='success' sx={{ height: '3rem' }} fullWidth type='submit' onClick={(e) => handleSubmit(e)}>Submit</Button>
             </Grid>
           </Grid>
         </Paper>
-      
+
       </Grid>
     </Box>
   )

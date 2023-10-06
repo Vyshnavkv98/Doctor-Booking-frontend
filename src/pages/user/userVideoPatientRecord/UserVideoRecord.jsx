@@ -124,7 +124,7 @@ export default function UserVideoRecord(props) {
               <Typography component="h1" variant="h4" color="text.primary" sx={{ font: 'bold', ml: 2 }}>
                 {appointment.date.split(',')[1]}
               </Typography>
-              <Typography variant="h6" color="text.secondary">
+              <Typography variant="h6" color="text.secondary" ml={2}>
                 {appointment.date.slice(0, 3)}
               </Typography>
             </Box>

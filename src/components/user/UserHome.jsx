@@ -45,10 +45,11 @@ console.log(item);
     if(item==='Find your nearest doctor'){
       navigate('/find-doctor')
     }
+    if(item==='Instant video consultaion'){
+      navigate('/video-consultation')
+    }
 
   }
-
-
   return (
     <Grid >
       <Container maxWidth="xl">
@@ -63,7 +64,7 @@ console.log(item);
             borderRadius: 10,
             backgroundPosition: 'center',
             backgroundImage: `url(${imgBanner})`,
-            minHeight: '500px',
+            minHeight: '440px',
           }}
         >
           {/* Increase the priority of the hero background image */}
@@ -95,7 +96,7 @@ console.log(item);
         </Paper>
         <Paper
           sx={{
-            padding: 6,
+            padding: 5,
             backgroundColor: 'transparant',
             color: '#fff',
             boxShadow: 'none',
@@ -109,7 +110,7 @@ console.log(item);
             {data.map((item) => (
               <Grid item xs={12} md={2} >
                 <Card sx={{
-                  maxWidth: 320,minHeight:350, borderRadius: '10px', cursor: 'pointer', transition: 'transform 0.4s ease',
+                  width: 230,minHeight:350,maxHeight:400,borderRadius: '10px', cursor: 'pointer', transition: 'transform 0.4s ease',
                   '&:hover': {
                     transform: 'scale(1.1)',
                     boxShadow: '0 8px 12px rgba(0, 0, 0, 0.15)',
@@ -133,10 +134,10 @@ console.log(item);
                       {item.subTitle}
                     </Typography>
                   </CardContent>
-                  <CardActions>
+                  {/* <CardActions>
                     <Button size="small">Share</Button>
                     <Button size="small">Learn More</Button>
-                  </CardActions>
+                  </CardActions> */}
                 </Card>
               </Grid>
             ))}
