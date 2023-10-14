@@ -20,7 +20,7 @@ import { Typography } from '@mui/material';
 
 
 
-const DoctorSideNav = ({handleSidenav}) => {
+const DoctorSideNav = ({ handleSidenav }) => {
 
     const navigate = useNavigate()
 
@@ -33,11 +33,11 @@ const DoctorSideNav = ({handleSidenav}) => {
         }
     };
 
-    const handleLogout=()=>{
-      localStorage.removeItem('accessToken')
+    const handleLogout = () => {
+        localStorage.removeItem('accessToken')
 
-      if( localStorage.getItem('accessToken')==null) navigate('doctor-login')
-       
+        if (localStorage.getItem('accessToken') == null) navigate('doctor-login')
+
     }
 
     const handlecontrol = (item) => {
@@ -49,18 +49,18 @@ const DoctorSideNav = ({handleSidenav}) => {
             if (item === 'Manage Slot') {
 
                 navigate('/Doctor-manage-slots')
-               
+
             }
             if (item === 'Manage video Slot') {
 
                 navigate('/Doctor-videocall-manage-slots')
-               
+
             }
             if (item === 'Video consultaion') {
                 console.log('fffff');
 
                 navigate('/doctor-online-appointment')
-               
+
             }
         } catch (error) {
             console.log(error);
@@ -74,8 +74,8 @@ const DoctorSideNav = ({handleSidenav}) => {
     const normalLink = 'flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-md text-gray-700 dark:text-gray-200 dark:hover:text-black hover:bg-light-gray m-2 overflow-y-hidden';
 
     return (
-        <div className={`flex overflow-y-hidden m-0 p-0 mr-0 gap-0 bg-dark-purple  transform transition-width duration-500   ${open ? "w-80" : "w-auto m-0 p-0"}  relative`} onMouseEnter={() =>{ setOpen(true);handleSidenav(true)}} onMouseLeave={() =>{ setOpen(false);handleSidenav(false)}}>
-            <div className="ml-3 h-screen -hidden overflow-y-hidden  md:hover:overflow-auto pb-9  gap-0 mt-5 mx-9">
+        <div className={`flex overflow-y-hidden m-0 p-0 mr-0 gap-0 bg-dark-purple  transform transition-width duration-500   ${open ? "w-80" : "w-auto m-0 p-0"}  relative`} onMouseEnter={() => { setOpen(true); handleSidenav(true) }} onMouseLeave={() => { setOpen(false); handleSidenav(false) }}>
+            <div className=" flex whitespace-nowrap overflow-auto scrollbar-hide ml-3 h-screen -hidden overflow-y-hidden  md:hover:overflow-auto pb-9  gap-0 mt-5 mx-9">
                 {activeMenu && (
                     <>
                         <div className="flex justify-between items-center">
@@ -108,7 +108,7 @@ const DoctorSideNav = ({handleSidenav}) => {
                                     className={({ isActive }) => (isActive ? activeLink : normalLink)}
                                 >
                                     <span className={`inline-block ${!open && 'text-2xl mt-4'}`}><BsCameraVideo /></span>
-                                    <Link className={`capitalize text-xl ${!open && 'hidden'}`}  to={'/doctor-online-appointment'}>Video consultaion</Link>
+                                    <Link className={`capitalize text-xl ${!open && 'hidden'}`} to={'/doctor-online-appointment'}>Video consultaion</Link>
 
                                 </NavLink>
                                 <NavLink
@@ -164,37 +164,37 @@ const DoctorSideNav = ({handleSidenav}) => {
                                     className={({ isActive }) => (isActive ? activeLink : normalLink)}
                                 >
                                     <span className={`inline-block ${!open && 'text-2xl mt-4'}`}><FiShoppingBag /></span>
-                                    <Link className={`capitalize text-xl ${!open && 'hidden'}`} to={'/doctor-login'} onClick={()=>handleLogout()} >Logout</Link>
+                                    <Link className={`capitalize text-xl ${!open && 'hidden'}`} to={'/doctor-login'} onClick={() => handleLogout()} >Logout</Link>
 
                                 </NavLink>
 
                             </div>
                             <div >
 
-                                <p className={`text-gray-400 dark:text-gray-400 text-2xl m-3  mt-4 uppercase ${!open && 'hidden'}`}>
+                                {/* <p className={`text-gray-400 dark:text-gray-400 text-2xl m-3  mt-4 uppercase ${!open && 'hidden'}`}>
                                     Chart
-                                </p>
-                                <NavLink
+                                </p> */}
+                                {/* <NavLink
                                     className={({ isActive }) => (isActive ? activeLink : normalLink)}
                                 >
                                     <span className={`inline-block ${!open && 'text-2xl mt-4'}`}><AiOutlineAreaChart /></span>
                                     <Link className={`capitalize text-xl ${!open && 'hidden'}`}>Area</Link>
 
-                                </NavLink>
-                                <NavLink
+                                </NavLink> */}
+                                {/* <NavLink
                                     className={({ isActive }) => (isActive ? activeLink : normalLink)}
                                 >
                                     <span className={`inline-block ${!open && 'text-2xl mt-4'}`}><AiOutlineStock /></span>
                                     <Link className={`capitalize text-xl ${!open && 'hidden'}`}>Line</Link>
 
-                                </NavLink>
-                                {/* <NavLink
-                                    className={({ isActive }) => (isActive ? activeLink : normalLink)}
-                                >
-                                    <span className={`inline-block ${!open && 'text-2xl mt-4'}`}><AiOutlineBarChart /></span>
-                                    <Link className={`capitalize text-xl ${!open && 'hidden'}`}>Bar</Link>
-
                                 </NavLink> */}
+                                {/* <NavLink
+                                            className={({ isActive }) => (isActive ? activeLink : normalLink)}
+                                        >
+                                            <span className={`inline-block ${!open && 'text-2xl mt-4'}`}><AiOutlineBarChart /></span>
+                                            <Link className={`capitalize text-xl ${!open && 'hidden'}`}>Bar</Link>
+
+                                        </NavLink> */}
 
                             </div>
 

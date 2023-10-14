@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { GrUserAdmin } from 'react-icons/gr'
 //import SerachForm from '../../components/admin/searchForm/SerachForm'
 import Sidebar from '../../components/admin/sidebar/Sidebar'
@@ -10,10 +10,15 @@ import Profile from '../../components/profile/Profile'
 import SideNavBar from '../../components/sidenavbar/SideNavBar'
 
 function ProfilePage() {
+    const [open, setOpen] = useState(true)
+    const handleSidenav = (val) => {
+        setOpen(val)
+        
+    }
     return (
         <div className='bg-white flex h-screen'>
             <div className=''>
-                <SideNavBar />
+                <SideNavBar  handleSidenav={handleSidenav}/>
             </div>
             <div className='flex flex-col mt-5 flex-1 overflow-y-auto'>
                 <div className='mx-5 flex right-end justify-between'>

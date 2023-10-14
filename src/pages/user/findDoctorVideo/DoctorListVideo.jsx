@@ -21,7 +21,7 @@ function DoctorListVideo() {
     }
 
     useEffect(() => {
-        (async () => {
+        (async () => {       
             try {
                 const doctors = await axios.post('/getall-doctors');
                 const doctorData=doctors.data.filter((doc)=>{

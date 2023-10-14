@@ -72,7 +72,7 @@ function App() {
           <Route path='/admin/doctor-verificcation' element={<AdiminDoctorVerification />}></Route>
           <Route path='/admin/add-department' element={<AdminAddDepartment />}></Route>
           <Route path='/admin/departments' element={<AdminAllDepartmentDetails />}></Route>
-          <Route path='/upload' element={<Upload />}></Route>
+          <Route path='/mapupload' element={<Upload />}></Route>
        
 
           <Route path='/doctor-home' element={<DoctorHomePage />}></Route>
