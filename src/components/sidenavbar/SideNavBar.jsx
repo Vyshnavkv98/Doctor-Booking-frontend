@@ -33,8 +33,8 @@ const navigate=useNavigate()
     index:3},
     {title:'Patient Record',icon:<LuStars />,
     index:4},
-    {title:'Manage Slots',icon:<BiAddToQueue />,
-    index:5},
+    // {title:'Manage Slots',icon:<BiAddToQueue />,
+    // index:5},
     {title:'Payments',icon:<RiSecurePaymentLine />,
     index:6,
   },
@@ -63,6 +63,16 @@ const navigate=useNavigate()
     if(title==='Video consultation'){
       console.log(title);
       navigate('/video-consultation')
+      
+    }
+    if(title==='Patient Record'){
+      console.log(title);
+      navigate('/patient-record-video')
+      
+    }
+    if(title==='Appointments'){
+      console.log(title);
+      navigate('/patient-record-offline')
       
     }
 

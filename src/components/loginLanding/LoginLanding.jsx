@@ -34,7 +34,7 @@ function LoginLanding() {
         <img src={img2} alt="" className='absolute w-full h-3/5 top-14 pt-1 -z-10 ' />
         <section class="bg-transparent z-30 ">
           
-        <div class="grid py-8 px-4 mx-auto max-w-screen-xl lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 bg-transparent z-10">
+        <div class="grid  px-4 mx-auto max-w-screen-xl  xl:gap-0 lg:py-12 lg:grid-cols-12 bg-transparent z-10">
             <div class="place-self-center mr-auto lg:col-span-7 mt-7">
                 <h1 class="mb-4 max-w-2xl text-4xl font-extrabold leading-none md:text-5xl xl:text-6xl dark:text-white">We help patients live a healthy, longer life</h1>
                 <p class="mb-6 max-w-2xl font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">Affordable and effective health care from liscenced providers, in-person or online.</p>
@@ -54,16 +54,16 @@ function LoginLanding() {
 
 
     <section class="bg-transparent z-30">
-        <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
-            <h2 class="mb-8 text-3xl font-extrabold tracking-tight leading-tight text-center text-gray-900 lg:mb-16 dark:text-white md:text-4xl">Find your doctor and make an appointment</h2>
-            <div class="grid grid-cols-2 gap-8 text-gray-500 sm:gap-12 md:grid-cols-3 lg:grid-cols-6 dark:text-gray-400">
+        <div class=" mx-auto max-w-screen-xl py-6 ">
+            <h2 class="mb-2  text-3xl font-extrabold tracking-tight leading-tight text-center text-gray-900 lg:mb-16 dark:text-white md:text-4xl">Find your doctor and make an appointment</h2>
+            <div class="grid grid-cols-2  text-gray-500 sm:gap-12 md:grid-cols-3 lg:grid-cols-6 dark:text-gray-400">
             </div>
         </div>
     </section>
 
     
-    <section class="bg-gray-50 dark:bg-gray-800">
-        <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+    <section class="bg-gray-50 dark:bg-gray-800 ">
+        <div class="py-8  mx-auto max-w-screen-xl sm:py-16 ">
             <div class="mb-8 max-w-screen-md lg:mb-16">
                 <h2 class="mb-4 text-4xl font-extrabold text-gray-900 dark:text-white">Designed for business teams like yours</h2>
                 <p class="text-gray-500 sm:text-xl dark:text-gray-400">Here at Flowbite we focus on markets where technology, innovation, and capital can unlock long-term value and drive economic growth.</p>

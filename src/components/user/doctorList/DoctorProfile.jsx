@@ -1,34 +1,23 @@
-import { Box, Card, CardContent, Divider, Grid, Rating, Typography } from '@mui/material'
+import { Box, Card, CardContent, Divider, Grid, Paper, Rating, Typography } from '@mui/material'
 import { lightBlue } from '@mui/material/colors'
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { useSpring, animated } from 'react-spring';
 
 function DoctorProfile() {
   const [doctorData, setdoctorData] = useState(null)
-  const [scrollY, setScrollY] = useState(0);
   const location = useLocation()
   useEffect(() => {
     const doctorData = location.state
     setdoctorData(doctorData)
   }, [])
   console.log(doctorData);
-  useEffect(() => {
-    const scrollInterval = setInterval(() => {
-      setScrollY((prevScrollY) => prevScrollY + 1);
-    }, 150); // Adjust the interval for the scrolling speed
 
-    return () => clearInterval(scrollInterval);
-  }, []);
-  const texts = 'helo safdhsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdk'
-  const cardStyles = useSpring({
-    transform: `translateY(-${scrollY * 10}px)`, // Adjust the multiplier for scroll speed
-  });
+ 
   return (
     <>
-      <Box bgcolor={'lightBlue'} height={'100vh'} width={'100vw'} display={'flex'} justifyContent={'center'} alignItems={'center'}>
-        <Grid display={'flex'} bgcolor={'white'} width={'90%'} height={'90%'} >
+      <Paper  height={'100vh'} width={'95%'} display={'flex'} justifyContent={'center'} alignItems={'center'} >
+        <Grid display={'flex'} bgcolor={'white'} width={'90%'} height={'90%'} mb={'2rem'} >
           <Grid item width={'35%'} bgcolor={'white'} display={'flex'} flexDirection={'column'} >
             <Grid display={'flex'} alignItems={'center'} justifyContent={'center'} mt={5} >
               <img src={doctorData?.image} width={'250px'} height={'250px'} alt="" />
@@ -43,48 +32,6 @@ function DoctorProfile() {
                 </Typography>
                 <Divider sx={{ mt: 3,zIndex:'12' }} variant='middle' />
                 <Grid>
-                  <animated.div style={{ ...cardStyles, overflow: 'hidden' }}>
-                    <CardContent >
-                      <Card sx={{marginTop:'10px'}}>
-                      <Typography variant="body2" m={1}>
-                        {texts}
-                      </Typography>
-                      </Card>
-                      <Card sx={{marginTop:'10px'}}>
-                      <Typography variant="body2" color={'blue'} m={1}>
-                        {texts}
-                      </Typography>
-                      </Card>
-                      <Card sx={{marginTop:'10px'}}>
-                      <Typography variant="body2" color={'blue'} m={1}>
-                        {texts}
-                      </Typography>
-                      </Card>
-                      <Card sx={{marginTop:'10px'}}>
-                      <Typography variant="body2" color={'blue'} m={1}>
-                        {texts}
-                      </Typography>
-                      </Card>
-                      <Card sx={{marginTop:'10px'}}>
-                      <Typography variant="body2" color={'blue'} m={1}>
-                        {texts}
-                      </Typography>
-                      </Card>
-                      <Card sx={{marginTop:'10px'}}>
-                      <Typography variant="body2" color={'blue'} m={1}>
-                        {texts}
-                      </Typography>
-                      </Card>
-                      <Card sx={{marginTop:'10px'}}>
-                      <Typography variant="body2" color={'blue'} m={1}>
-                        {texts}
-                      </Typography>
-                      </Card>
-                 
-                     
-                    
-                    </CardContent>
-                  </animated.div>
 
                 </Grid>
               </Card>
@@ -151,7 +98,7 @@ function DoctorProfile() {
 
             </Grid>
             <Divider sx={{ mt: 3 }} variant='middle' />
-            <Grid display={'flex'}>
+            <Grid display={'flex'} >
               <Grid marginLeft={5} mt={2}>
                 <Typography variant='subtitle1' style={{ marginBottom: '10px' }}>
                   Birth day
@@ -173,7 +120,7 @@ function DoctorProfile() {
 
           </Grid>
         </Grid>
-      </Box>
+      </Paper>
     </>
   )
 }

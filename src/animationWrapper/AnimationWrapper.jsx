@@ -5,20 +5,24 @@ import { AnimatePresence } from 'framer-motion';
 import LoginPage from '../pages/LoginPage'
 import Home from '../pages/HomePage';
 
-import Login from '../components/login/Login';
 import Signup from '../pages/Signup';
 import FindDoctor from '../pages/doctor/findDoctor/FindDoctor';
 import AppointmentConfirmation from '../pages/user/appointment/AppointmentConfirmation'
-import Profile from '../components/profile/Profile';
 import ListAllDoctor from '../pages/user/doctorList/ListAllDoctor';
 import ProfilePage from '../pages/user/ProfilePage';
 import {ProtectedRoute} from '../services/ProtectedRouter'
 import PaymentSuccess from '../components/user/payment/PaymentSuccess';
-import ConfirmAppointment from '../components/modal/ConfirmAppointment';
-import DoctorProfile from '../pages/user/doctorProfile/DoctorProfile';
-import FindDoctorVideoConsultation from '../components/user/videoConsultation/FindDoctorVideoConsultation';
 import SearchDoctorVideoConsultation from '../pages/user/findDoctorVideo/SearchDoctorVideoConsultation';
 import DoctorListVideo from '../pages/user/findDoctorVideo/DoctorListVideo';
+import UserRoomPage from '../pages/user/userVideo/UserRoomPage';
+import UserVideoRecord from '../pages/user/userVideoPatientRecord/UserVideoRecord';
+import UserVideoRecordPage from '../pages/user/userPatientRecord/UserVideoRecordPage';
+import UserVideoLandingPage from '../pages/user/userVideo/UserVideoLandingPage';
+import DoctorSuccess from '../components/doctorHomeNav/doctorNav/doctorVideoSuccess/DoctorSuccess';
+import DoctorProfileUserSide from '../pages/user/doctorProfilePage/DoctorProfileUserSide';
+import DoctorProfile from '../components/user/doctorList/DoctorProfile';
+import AppointmentRecordTable from '../components/user/appointmentTable/AppointmentRecordTable';
+import UserAppointmentRecordPage from '../pages/user/userAppointmentsRecordPage/UserAppointmentRecordPage'
 
 
 
@@ -43,9 +47,15 @@ const AnimationWrapper = () => {
             <Route path='/doctor-book' element={<ListAllDoctor />}></Route>
             <Route path='/appointment' element={<AppointmentConfirmation />}></Route>
             <Route path='/payment-success' element={<PaymentSuccess />}></Route>
-            <Route path='/doctor-profileinfo' element={<DoctorProfile />}></Route>
+            <Route path='/doctor-profileinfo' element={<DoctorProfileUserSide />}></Route>
             <Route path='/video-consultation' element={<SearchDoctorVideoConsultation />}></Route>
             <Route path='/doctor-book-video-consultation' element={<DoctorListVideo />}></Route>
+            <Route path='/user-video-landing' element={<UserVideoLandingPage />}></Route>
+            <Route path='/patient-record-video' element={<UserVideoRecordPage />}></Route>
+            <Route path='/patient-record-offline' element={<UserAppointmentRecordPage />}></Route>
+            <Route path='/user-room/:roomid' element={<UserRoomPage value={'user'}/>}></Route>
+            <Route path='/user/video-success' element={<DoctorSuccess value={'user'}/>}></Route>
+            
           </Route>
       </Routes>
     </AnimatePresence>

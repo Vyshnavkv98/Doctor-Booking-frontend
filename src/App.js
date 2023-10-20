@@ -23,6 +23,21 @@ import AdminAllDepartmentDetails from './pages/AdminAllDepartmentDetails';
 import AdiminDoctorVerification from './pages/AdminDoctorVerification';
 import ManageDoctorSlots from './pages/doctor/doctorSlotAppointment/ManageDoctorSlots';
 import AnimationWrapper from './animationWrapper/AnimationWrapper';
+import DoctorVideoConsultationSlotBooking from './pages/doctor/doctorVideoConsultationSlotBooking/DoctorVideoConsultationSlotBooking';
+import DoctorOnlineAppointments from './pages/doctor/doctorOnlineAppointments/DoctorOnlineAppointments';
+import DoctorVideocall from './components/doctorHomeNav/doctorVideoCall/DoctorVideocall';
+import DoctorVideoLandingPage from './pages/doctor/doctorVideoLanding/DoctorVideoLandingPage';
+import { Suspense } from 'react';
+import Loader from './components/loader/Loader';
+import DoctorRoom from './components/doctorHomeNav/doctorVideoCall/DoctorRoom';
+import DoctorRoomPage from './pages/doctor/doctorRoomPage/DoctorRoomPage';
+import DoctorPrescription from './components/doctorHomeNav/doctorDescription/DoctorPrescription';
+import DoctorPrescriptionPage from './pages/doctor/doctorPrescription/DoctorPrescriptionPage';
+import DoctorSuccess from './components/doctorHomeNav/doctorNav/doctorVideoSuccess/DoctorSuccess';
+import MapComponent from './components/doctorHomeNav/mapcomponent/MapComponent';
+import DoctorWallet from './components/doctorHomeNav/doctorWallet/DoctorWallet';
+import DoctorWalletPage from './pages/doctor/doctorWalletPage/DoctorWalletPage';
+
 
 
 function App() {
@@ -31,6 +46,7 @@ function App() {
   const [loginStatus, setLoginStatus] = useState(false)
   const [adminLoginStatus, setAdminLoginStatus] = useState(false)
   const dispatch = useDispatch(login)
+
 
 
 
@@ -46,6 +62,7 @@ function App() {
 
         
           <AnimationWrapper />
+          <Suspense fallback={<Loader />}>
        
         <Routes>
            
@@ -58,21 +75,25 @@ function App() {
           <Route path='/admin/doctor-verificcation' element={<AdiminDoctorVerification />}></Route>
           <Route path='/admin/add-department' element={<AdminAddDepartment />}></Route>
           <Route path='/admin/departments' element={<AdminAllDepartmentDetails />}></Route>
-
-          <Route path='/upload' element={<Upload />}></Route>
+          <Route path='/mapupload' element={<Upload />}></Route>
+       
 
           <Route path='/doctor-home' element={<DoctorHomePage />}></Route>
           <Route path='/doctor-login' element={<DoctorLogin />}></Route>
           <Route path='/doctor-Profile-verify' element={<DoctorProfileVerify />}></Route>
           <Route path='/Doctor-verify1' element={<DoctorVerifyData1 />}></Route>
           <Route path='/Doctor-manage-slots' element={<ManageDoctorSlots />}></Route>
-
-
-
+          <Route path='/Doctor-videocall-manage-slots' element={<DoctorVideoConsultationSlotBooking />}></Route>
+          <Route path='/doctor-online-appointment' element={<DoctorOnlineAppointments />}></Route>
+          <Route path='/doctor-video-landing' element={<DoctorVideoLandingPage />}></Route>
+          <Route path='/doctor-room/:roomid' element={<DoctorRoomPage value={'doctor'} />}></Route>
+          <Route path='/doctor-prescription' element={<DoctorPrescriptionPage />}></Route>
+          <Route path='/doctor-success' element={<DoctorSuccess value={'doctor'}/>}></Route>
+          <Route path='/map' element={<MapComponent />}></Route>
+          <Route path='/doctor-wallet' element={<DoctorWalletPage />}></Route>
         </Routes>
-
+        </Suspense>
         <ToastContainer />
-
       </AppContext.Provider>
 
 

@@ -5,27 +5,37 @@ import AddFileButton from '../addFile/AddFileButton'
 import AddFolder from '../addFile/AddFolder'
 import TopNavBar from '../topNavBar/TopNavBar'
 import UserHome from '../user/UserHome'
-import { Grid } from '@mui/material'
+import { Box, Grid } from '@mui/material'
 import Footer from '../user/footer/Footer'
+import { useState } from 'react'
 
-function home() {
-
+function Home() {
+  const[open,setOpen]=useState(true)
+  const handleSidenav = (val) => {
+      setOpen(val)
+  }
   return (
-    <Grid container style={{ height: '100vh' }} display={'flex'} >
-      <Grid item style={{ position: 'fixed', height: '100%', }}>
-        <SideNavBar />
-      </Grid>
-      {/* style={{ marginLeft: '340px', padding: '20px' }} */}
-      <Grid item style={{ marginLeft: '340px', padding: '20px', position: 'relative' }} >
-        <TopNavBar />
-        <UserHome />
-        <Footer />
-      </Grid>
-    </Grid>
+    <Box display={'flex'} flexDirection={'column'} >
+
+            <Grid position={'fixed'} width={'100%'} zIndex={1}>
+                <TopNavBar />
+            </Grid>
+
+            <Grid display={'flex'}>
+                <Grid position={'fixed'} mt={'6rem'}>
+                    <SideNavBar handleSidenav={handleSidenav} />
+                </Grid>
+               
+                <Grid width={'100%'} height={'100vh'} mt={2} display={'flex'} flexDirection={'column'} ml={open?'22rem':'8rem'} marginTop={'7rem'}>
+                    <UserHome />
+                    <Grid ><Footer /></Grid>
+                </Grid>
+            </Grid>
+        </Box>
 
 
 
   )
 }
 
-export default home
+export default Home

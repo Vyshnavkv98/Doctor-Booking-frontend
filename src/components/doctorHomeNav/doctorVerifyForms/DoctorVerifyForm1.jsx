@@ -21,6 +21,9 @@ import { toast } from "react-toastify"
 import { useNavigate } from 'react-router-dom';
 import axios from '../../../axios/axios'
 import { useDispatch, useSelector } from 'react-redux';
+import { loginDoctor } from '../../../redux/doctor'
+import MapModal from '../../modal/MapModal'
+
 
 
 
@@ -28,6 +31,7 @@ const defaultTheme = createTheme();
 
 export default function DoctorVerifyForm1() {
 
+  const dispatch = useDispatch()
   const doctor = useSelector(state => state.doctor.doctor?.doctor);
 
 
@@ -38,6 +42,10 @@ export default function DoctorVerifyForm1() {
     isSnackbarOpen: false,
   });
   const [uploadProgress, setUploadProgress] = React.useState(0);
+  
+  const [openMapModal, setOpenMapModal] = React.useState(false);
+  const [address, setAddress] = React.useState(null);
+
 
   const cloudName = 'dvxprkre3';
   const uploadPreset = 'hn5yx4md';
@@ -79,9 +87,9 @@ export default function DoctorVerifyForm1() {
       registrationCouncil: '',
       registerNumber: '',
       registrationYear: '',
-      offline:true,
-      chat:false,
-      video:false
+      offline: true,
+      chat: false,
+      video: false
 
 
     },
@@ -129,7 +137,7 @@ export default function DoctorVerifyForm1() {
             ...values, _id: doctor?._id, imgUrl: secureUrls[0], image: secureUrls[1]
           }
           const response = await axios.post('verifydata', doctorDatas)
-          if (response) useDispatch((loginDoctor(response.data.doctor)))
+          if (response) dispatch((loginDoctor(response.data.doctor)))
           if (doctor?.isVerified) {
             navigate('/doctor-home')
           }
@@ -191,6 +199,26 @@ export default function DoctorVerifyForm1() {
 
   const handleCloseSnackbar = () => {
     setUploadData({ ...uploadData, isSnackbarOpen: false });
+  };
+
+
+
+
+  const handleOpenMapModal = () => {
+    setOpenMapModal(true);
+  };
+
+  const handleCloseMapModal = () => {
+    setOpenMapModal(false);
+  };
+
+  const handleSelectLocation = (location) => {
+    // Update the AddressLine1 field with the selected location (latitude and longitude)
+    // You can implement this logic based on your requirements
+    setAddress({ ...values, AddressLine1: `Lat: ${location.lat}, Lng: ${location.lng}` });
+
+    // Close the map modal
+    handleCloseMapModal();
   };
 
   return (
@@ -345,19 +373,19 @@ export default function DoctorVerifyForm1() {
                   {<FormHelperText sx={{ fontSize: 15 }} error='true'>{errors.docs}</FormHelperText>}
                 </Grid>
                 <Grid item xs={12} >
-                    <FormLabel id="demo-row-radio-buttons-group-label">Offline Consultation?</FormLabel>
-                    <RadioGroup
-                      row
-                      aria-labelledby="demo-row-radio-buttons-group-label"
-                      name="offline"
-                      onChange={handleChange}
-                    >
-                      <FormControlLabel value="yes" name='offline' control={<Radio />} label="Yes" />
-                      <FormControlLabel value="no" name='offline' control={<Radio />} label="No" />
+                  <FormLabel id="demo-row-radio-buttons-group-label">Offline Consultation?</FormLabel>
+                  <RadioGroup
+                    row
+                    aria-labelledby="demo-row-radio-buttons-group-label"
+                    name="offline"
+                    onChange={handleChange}
+                  >
+                    <FormControlLabel value="yes" name='offline' control={<Radio />} label="Yes" />
+                    <FormControlLabel value="no" name='offline' control={<Radio />} label="No" />
 
-                    </RadioGroup>
-                    {<FormHelperText sx={{ fontSize: 15 }} error='true'>{errors.offline}</FormHelperText>}
-                  </Grid>
+                  </RadioGroup>
+                  {<FormHelperText sx={{ fontSize: 15 }} error='true'>{errors.offline}</FormHelperText>}
+                </Grid>
 
               </Grid>
               <Button
@@ -468,7 +496,7 @@ export default function DoctorVerifyForm1() {
                     />
                     {<FormHelperText sx={{ fontSize: 15 }} error='true'>{errors.registrationYear}</FormHelperText>}
                   </Grid>
-                  <Grid item xs={12} >
+                  <Grid item xs={12}  display={'flex'}>
                     <TextField
                       autoComplete="AddressLine1"
                       name="AddressLine1"
@@ -480,6 +508,8 @@ export default function DoctorVerifyForm1() {
                       value={values.AddressLine1}
                       onChange={handleChange}
                     />
+                    <Button onClick={handleOpenMapModal}>Map</Button>
+                    <MapModal open={openMapModal} onClose={handleCloseMapModal} onSelectLocation={handleSelectLocation} />
                     {<FormHelperText sx={{ fontSize: 15 }} error='true'>{errors.AddressLine2}</FormHelperText>}
                   </Grid>
                   <Grid item xs={12} >
@@ -534,7 +564,7 @@ export default function DoctorVerifyForm1() {
                   variant="contained"
                   sx={{ mt: 3, mb: 2 }}
                 >
-                  Continue
+                  Submit
                 </Button>
                 <Grid container justifyContent="flex-end">
                   <Grid item>

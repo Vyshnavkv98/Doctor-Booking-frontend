@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { baseUrl } from '../constants/constant'
 import { toast } from 'react-toastify';
-import { ScaleLoader } from 'react-spinners'
+// import { ScaleLoader } from 'react-spinners'
 
 
 const refreshToken = localStorage.getItem('refresh-token');

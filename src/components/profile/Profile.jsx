@@ -25,9 +25,6 @@ function Profile() {
   }
   const fileInputRef = useRef(null);
 
-  // const handleClick = () => {
-  //   fileInputRef.current.click();
-  // };
 
   const handleProfileImage = (e) => {
     if (e.target.files.length > 0) {
@@ -40,9 +37,6 @@ function Profile() {
     setUserBasicDetails({ ...userData })
   
   },[])
-
-  //  const userBasicDetails = useSelector(state => state.user.user?.user)
-
 
   const { values, errors, handleSubmit, handleChange, handleBlur } = useFormik({
     initialValues: {
@@ -122,13 +116,12 @@ function Profile() {
       {/* Increase the priority of the hero background image */}
       {<img style={{ display: 'none', borderRadius: '5px' }} alt="Banner" />}
       <Grid item height={'auto'}
-        sx={{ marginTop: 3, marginLeft: 9, boxShadow: '4', position: 'absolute', top: '25rem', background: 'white', borderRadius: 5 }}
+        sx={{ marginTop: 3, marginLeft: 9, boxShadow: '4', position: 'absolute', top: '23rem', background: 'white', borderRadius: 5 }}
         justifyContent={'center'}
         justifyItems={'center'}
         alignItems={'center'}
         zIndex={'40'}
-        width={'75vw'}
-
+        width={'71%'}
       >
 
         {!editProfile && <Grid item xs={12} component="form" noValidate sx={{ marginLeft: 7, marginRight: 7, marginBottom: 5 }}>

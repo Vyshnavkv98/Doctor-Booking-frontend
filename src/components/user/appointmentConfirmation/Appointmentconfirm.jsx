@@ -46,11 +46,18 @@ function Appointmentconfirm() {
     validationSchema: AppointmentSchema,
     onSubmit: async () => {
       try {
+        let appointmentDetails
+        if(location.state.video){
+          console.log('fffff');
+        const appointmentData = { ...slotdata,date:location.state.date,time:location.state.time, name: values.name, mobile: values.mobile,email: values.email, reason: values.reason, fee: values.consultaionFee, userId: userData._id, doctorId: doctor._id,videoConsult:'true'  }
+         appointmentDetails = await axios.post('/add-appointment', appointmentData)
+        }else{
+          const appointmentData = { ...slotdata,date:location.state.date,time:location.state.time, name: values.name, mobile: values.mobile,email: values.email, reason: values.reason, fee: values.consultaionFee, userId: userData._id, doctorId: doctor._id,}
+         appointmentDetails = await axios.post('/add-appointment', appointmentData)
+        }
 
-        const appointmentData = { ...slotdata, name: values.name, mobile: values.mobile,email: values.email, reason: values.reason, fee: values.consultaionFee, userId: userData._id, doctorId: doctor._id }
-        const appointmentDetails = await axios.post('/add-appointment', appointmentData)
-        if (appointmentDetails !== undefined) {  
-           dispatch(appointment(appointmentDetails))
+        if (appointmentDetails?.status===201) {  
+          //  dispatch(appointment(appointmentDetails));
           const paymetInfo={name:values.name,RegisterFee:500}
           await axios.post("/create-checkout-session",paymetInfo)
           .then((res)=>{
@@ -79,9 +86,11 @@ function Appointmentconfirm() {
               <Grid width={'100%'} display={'flex'} m={2}>
                 <HomeIcon sx={{ backgroundColor: 'green', color: 'white', borderRadius: '100%' }} />
 
-                <Typography variant='subtitle1' fontWeight={600} ml={3}>
+                {location.state.video?<Typography variant='subtitle1' fontWeight={600} ml={3}>
+                  Video consultation Appointment
+                </Typography>:<Typography variant='subtitle1' fontWeight={600} ml={3}>
                   In-clinic Appointment
-                </Typography>
+                </Typography>}
 
               </Grid>
               <Divider sx={{ width: '90%', marginLeft: '5%' }} />
@@ -105,10 +114,10 @@ function Appointmentconfirm() {
               </Grid>
 
               <Divider sx={{ width: '90%', marginLeft: '5%' }} />
-              <Grid width={'90%'} display={'flex'} m={2} >
+              <Grid width={'90%'} display={'flex'} m={2} ml={3} >
                 <img src={doctor.image} width={'30%'} height={'30%'} alt="" />
 
-                <Grid display={'flex'} flexDirection={'column'} width={'90%'}>
+                <Grid display={'flex'} flexDirection={'column'} width={'90%'} ml={2}>
                   <Typography variant='h6' fontWeight={600}>
                     Dr.{doctor.firstName} {doctor.lastName}
                   </Typography>
@@ -128,10 +137,10 @@ function Appointmentconfirm() {
               </Grid>
               <Divider sx={{ width: '90%', marginLeft: '5%' }} />
 
-              <Grid width={'90%'} display={'flex'} m={2} >
-                <img src={doctor.image1} width={'30%'} height={'30%'} alt="" />
+              <Grid width={'90%'} display={'flex'} m={2} ml={3} >
+                <img src={doctor.image} width={'30%'} height={'30%'} alt="" />
 
-                <Grid display={'flex'} flexDirection={'column'} width={'90%'}>
+                <Grid display={'flex'} flexDirection={'column'} width={'90%'} ml={2}> 
                   <Typography variant='subtitle2' style={{ color: 'GrayText' }}>
                     {doctor.Specialization}
                   </Typography >

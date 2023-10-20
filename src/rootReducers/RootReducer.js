@@ -4,6 +4,7 @@ import adminReducer from '../redux/admin'
 import doctorReducer from '../redux/doctor'
 import searchReducer from '../redux/searchDoctor'
 import appointmentReducer from '../redux/appointment'
+import videocallReducer from '../redux/videocall'
 
 const rootReducer = combineReducers({
     user: userReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
     doctor: doctorReducer,
     searchKeyword: searchReducer,
     appointment: appointmentReducer,
+    videocall:videocallReducer
   });
   
   export default rootReducer;
