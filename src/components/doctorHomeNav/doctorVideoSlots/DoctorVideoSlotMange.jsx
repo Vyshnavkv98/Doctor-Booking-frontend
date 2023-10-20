@@ -53,7 +53,6 @@ function DoctorVideoSlotManage() {
         setTimeSlot([...matchingSlot.slots]);
   
         const videoTime = time.filter((times) => !matchingSlot.slots.includes(times));
-        console.log(videoTime, 'video');
   
         setVideoTimeSlots([...videoTime]);
   
@@ -109,7 +108,7 @@ function DoctorVideoSlotManage() {
 
     if (timeSlotsVideo.includes(time)) {
       setTimeSlotVideo(
-        timeSlotsVideo.filter((i) => i !== time)
+        [...timeSlotsVideo.filter((i) => i !== time)]
       );
     } else {
       setTimeSlotVideo([...timeSlotsVideo, time]);
@@ -163,7 +162,9 @@ function DoctorVideoSlotManage() {
                     <Button
                       key={times}
                       sx={
-                         style
+                        timeSlotsVideo.includes(times)
+                          ? style1
+                          : style
                       }
                       variant='outlined'
                       onClick={() => handleButton(index, times)}

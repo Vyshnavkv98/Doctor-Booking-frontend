@@ -34,6 +34,9 @@ import DoctorRoomPage from './pages/doctor/doctorRoomPage/DoctorRoomPage';
 import DoctorPrescription from './components/doctorHomeNav/doctorDescription/DoctorPrescription';
 import DoctorPrescriptionPage from './pages/doctor/doctorPrescription/DoctorPrescriptionPage';
 import DoctorSuccess from './components/doctorHomeNav/doctorNav/doctorVideoSuccess/DoctorSuccess';
+import MapComponent from './components/doctorHomeNav/mapcomponent/MapComponent';
+import DoctorWallet from './components/doctorHomeNav/doctorWallet/DoctorWallet';
+import DoctorWalletPage from './pages/doctor/doctorWalletPage/DoctorWalletPage';
 
 
 
@@ -86,6 +89,8 @@ function App() {
           <Route path='/doctor-room/:roomid' element={<DoctorRoomPage value={'doctor'} />}></Route>
           <Route path='/doctor-prescription' element={<DoctorPrescriptionPage />}></Route>
           <Route path='/doctor-success' element={<DoctorSuccess value={'doctor'}/>}></Route>
+          <Route path='/map' element={<MapComponent />}></Route>
+          <Route path='/doctor-wallet' element={<DoctorWalletPage />}></Route>
         </Routes>
         </Suspense>
         <ToastContainer />

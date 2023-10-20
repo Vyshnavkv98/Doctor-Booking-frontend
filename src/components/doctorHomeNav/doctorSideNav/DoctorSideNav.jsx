@@ -129,7 +129,7 @@ const DoctorSideNav = ({ handleSidenav }) => {
                                     className={({ isActive }) => (isActive ? activeLink : normalLink)}
                                 >
                                     <span className={`inline-block ${!open && 'text-2xl mt-4'}`}><MdOutlinePayment /></span>
-                                    <Link className={`capitalize text-xl ${!open && 'hidden'}`}>Payment</Link>
+                                    <Link className={`capitalize text-xl ${!open && 'hidden'}`} to={'/doctor-wallet'}>Payment</Link>
 
                                 </NavLink>
                                 <NavLink

@@ -49,7 +49,7 @@ export default function Footer() {
 
               <Typography variant='subtitle2' fontSize={22} fontWeight={550} className='text-uppercase fw-bold mb-4'>
                 {/* <MDBIcon color='secondary' icon='gem' className='me-3' /> */}
-                Company name
+                MEDSS
               </Typography>
               <Typography color={'gray'}>
                 Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit

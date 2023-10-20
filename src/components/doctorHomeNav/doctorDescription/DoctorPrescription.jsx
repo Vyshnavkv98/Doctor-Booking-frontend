@@ -113,7 +113,7 @@ function DoctorPrescription() {
             </Typography>
           </Grid>
         </Paper>
-        <Paper sx={{ width: '60%', height: '95vh', bgcolor: 'rgba(0,0,0,0.6)', boxShadow: 2, display: 'flex', mt: '3.5rem', flexDirection: 'column' }} variant='outlined' >
+        <Paper  sx={{ width: '60%', height: '95vh', bgcolor: 'rgba(0,0,0,0.6)', boxShadow: 2, display: 'flex', mt: '3.5rem', flexDirection: 'column' }} variant='outlined' >
 
           <Grid item spacing={2} display={'flex'} width={'100%'}>
             <Grid sx={6} md={6} width={'50%'} m={'1rem'} mt={'2.5rem'} >
@@ -146,7 +146,7 @@ function DoctorPrescription() {
             </Grid>
           </Grid>
           <Grid display={'flex'} justifyContent={'end'} mr={2}>
-            <Button variant='contained' color='error' onClick={handleSetAllPrescription}>Add</Button>
+            <Button variant='contained' color='error' onClick={() => handleSetAllPrescription()}>Add</Button>
           </Grid>
           <Grid m={2} style={{ bgcolor: 'rgba(255,255,255,0.6)' }}>
             {allPrescription.length > 0 &&
