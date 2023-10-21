@@ -99,21 +99,21 @@ function DoctorPrescription() {
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         minWidth: '100%',
-        minHeight: '115vh',
+        minHeight: '110vh',
       }}
       minWidth={'90%'}
       minHeight={'100vh'}
     >
       <Grid display={'flex'} justifyContent={'center'} flexDirection={'column'} alignItems={'center'} >
 
-        <Paper sx={{ bgcolor: 'green', width: '95%', height: '50px', mt: '2rem' }}  >
+        <Paper component={'form'} sx={{ bgcolor: 'green', width: '95%', height: '50px', mt: '2rem' }}  >
           <Grid ml={'2rem'}>
             <Typography variant='subtitle1' color={'white'} fontWeight={550} fontSize={'1.5rem'}>
               Prescription
             </Typography>
           </Grid>
         </Paper>
-        <Paper  sx={{ width: '60%', height: '95vh', bgcolor: 'rgba(0,0,0,0.6)', boxShadow: 2, display: 'flex', mt: '3.5rem', flexDirection: 'column' }} variant='outlined' >
+        <Paper sx={{ width: '60%', height: '95vh', bgcolor: 'rgba(0,0,0,0.6)', boxShadow: 2, display: 'flex', mt: '3.5rem', flexDirection: 'column' }} variant='outlined' >
 
           <Grid item spacing={2} display={'flex'} width={'100%'}>
             <Grid sx={6} md={6} width={'50%'} m={'1rem'} mt={'2.5rem'} >
