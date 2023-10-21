@@ -190,7 +190,7 @@ function DoctorPrescription() {
             <Grid xs={12} md={12} m={'1rem'}  >
               <FormLabel sx={{ color: 'white' }}>notes</FormLabel>
               <TextField label='notes' name='notes' sx={{ color: 'white', width: '100%', bgcolor: 'rgba(255,255,255,0.6)', borderRadius: '10px' }} value={prescription.notes} onChange={(e) => HandleChange(e)}></TextField>
-            </Grid>
+            </Grid>y
             <Grid xs={12} md={12} m={'1rem'} >
               <FormLabel sx={{ color: 'white' }}>nextAppointment</FormLabel>
               <TextField placeholder='eg : 25-12-2023' name='nextAppointment' sx={{ color: 'white', width: '100%', bgcolor: 'rgba(255,255,255,0.6)', borderRadius: '10px' }} value={prescription.nextAppointment} onChange={(e) => HandleChange(e)}></TextField>
