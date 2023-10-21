@@ -56,22 +56,18 @@ const navigate=useNavigate()
       
     }
     if(title==='Profile'){
-      console.log(title);
       navigate('/profile')
       
     }
     if(title==='Video consultation'){
-      console.log(title);
       navigate('/video-consultation')
       
     }
     if(title==='Patient Record'){
-      console.log(title);
       navigate('/patient-record-video')
       
     }
     if(title==='Appointments'){
-      console.log(title);
       navigate('/patient-record-offline')
       
     }
