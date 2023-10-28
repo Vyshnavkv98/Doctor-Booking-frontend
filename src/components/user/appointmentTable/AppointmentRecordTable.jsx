@@ -9,8 +9,8 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { Box, Button, IconButton } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
 import CancelIcon from '@mui/icons-material/Cancel';
+import DownloadButton from '../../../services/DownloadButton';
 
 function AppointmentRecordTable() {
     const [appointments, setAppointments] = useState([]);
@@ -34,7 +34,7 @@ function AppointmentRecordTable() {
     useEffect(() => {
         const fetchAppointments = async () => {
             try {
-                const response = await axios.get('/user-appointments');
+                const response = await axios.get('/user-video-appointments');
                 setAppointments([...response.data.appointments]);
             } catch (error) {
                 console.error('Error fetching appointments:', error);
@@ -42,13 +42,14 @@ function AppointmentRecordTable() {
         };
 
         fetchAppointments();
+        console.log(appointments,'from offlirr');
     }, []);
 
     return (
         <Box sx={{ display: 'flex', justifyContent: 'center' }}>
             <Paper sx={{ width: '90%', overflow: 'hidden', mt: 8 }}>
-                <TableContainer component={Paper} sx={{ height: '150px', bgcolor: 'rgba(255,255,255,0.6)' }}>
-                    <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+                <TableContainer component={Paper} sx={{ minHeight: '450px', bgcolor: 'rgba(255,255,255,0.6)' }}>
+                    <Table sx={{ }} size="small" aria-label="a dense table">
                         <TableHead>
                             <TableRow>
                                 <TableCell align="right">appointmentId</TableCell>
@@ -67,11 +68,12 @@ function AppointmentRecordTable() {
                                 >
                                     <TableCell align="right">{row._id}</TableCell>
                                     <TableCell align="right">{row.name}</TableCell>
-                                    <TableCell align="right">{row.name}</TableCell>
+                                    <TableCell align="right">Dr.{row.doctor?.firstName} {row.doctor?.lastName}</TableCell>
                                     <TableCell align="right">{row.time}</TableCell>
                                     <TableCell align="right">{row.date}</TableCell>
                                     <TableCell align="right">
-                                        <Button variant='contained' color='warning'>cancel<CancelIcon color='error'/></Button>
+                                        {/* <DownloadButton /> */}
+                                    <CancelIcon color='error' />
                                     </TableCell>
                                 </TableRow>
                             ))}

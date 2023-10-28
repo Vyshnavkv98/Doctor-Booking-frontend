@@ -1,11 +1,9 @@
 import { Box, Grid } from '@mui/material'
-import React, { useCallback, useEffect, useState } from 'react'
 import TopNavBar from '../../../components/topNavBar/TopNavBar'
 import SideNavBar from '../../../components/sidenavbar/SideNavBar'
-import FindDoctorVideoConsultation from '../../../components/user/videoConsultation/FindDoctorVideoConsultation'
 import Footer from '../../../components/user/footer/Footer'
 import UserVideoRecord from '../userVideoPatientRecord/UserVideoRecord'
-import { useSocket } from '../../../context/SocketProvider'
+import { useState } from 'react'
 
 function UserVideoRecordPage() {
 
@@ -34,12 +32,7 @@ function UserVideoRecordPage() {
                     <UserVideoRecord />
                     <Grid mt={3}><Footer /></Grid>
                 </Grid>}
-                
-
             </Grid>
-
-            
-
         </Box>
     )
 }

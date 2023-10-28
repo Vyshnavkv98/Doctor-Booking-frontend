@@ -13,22 +13,24 @@ import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 
 
 
-function DoctorWallet(props) {
+function UserWalletComponent(props) {
     const [appointments, setAppointments] = useState([]);
-    const[total,setTotal]=useState(0)
+    const [total, setTotal] = useState(0);
 
-    let tot=0
-    props.appointments.forEach((item)=>{
-        return tot+=item.fee*85/100
-    })
-
-    
 
 
     useEffect(() => {
         setAppointments([...props.appointments])
-        if(tot)setTotal(tot)
-    }, [total])
+
+        if(appointments){
+            appointments.reduce((item,prevTotal) => {
+                 return prevTotal += (Number(item.fee * 60 / 100))
+                  setTotal(prevTotal)
+              },0) 
+        }
+   
+console.log(total,'total')
+    },[])
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -61,7 +63,7 @@ function DoctorWallet(props) {
                                     </Grid>
                                     <Grid display={'flex'}>
                                         <AccountBalanceWalletIcon sx={{ fontSize: '2rem' }} />
-                                        <Typography fontSize={'2rem'} ml={'1rem'}>₹{total} </Typography>
+                                        <Typography fontSize={'2rem'} ml={'1rem'}>₹ </Typography>
                                     </Grid>
                                 </Grid>
                                 <Grid display={'flex'} alignItems={'center'} mr={2}>
@@ -99,9 +101,9 @@ function DoctorWallet(props) {
                                                     />
                                                 </TableCell>
                                                 <TableCell align="right">{row.name}</TableCell>
-                                                <TableCell align="right">{row.user.email}</TableCell>
-                                                <TableCell align="right">{row.fee * 85 / 100}</TableCell>
-                                                <TableCell align="right" sx={{ color: 'green' }}>credited</TableCell>
+                                                <TableCell align="right">{row.email}</TableCell>
+                                                <TableCell align="right">₹{row.fee * 60 / 100}</TableCell>
+                                                <TableCell align="right" sx={{ color: 'green' }}><Button sx={{color:'white',backgroundColor:'green', borderRadius:2,fontSize:12}}>Credited</Button></TableCell>
                                                 {/* <TableCell align="right">
                                         <Button variant='contained' color='warning'>cancel<CancelIcon color='error'/></Button>
                                     </TableCell> */}
@@ -128,4 +130,4 @@ function DoctorWallet(props) {
     )
 }
 
-export default DoctorWallet
+export default UserWalletComponent

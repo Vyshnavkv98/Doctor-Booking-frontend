@@ -6,7 +6,7 @@ import { AppBar, Box, Button, ButtonGroup, Card, CardActionArea, CardContent, Co
 
 import docBanner from '../../../assets/findDoctor.png';
 import security from '../../../assets/security_1.webp';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import {setSerchKeyWords} from '../../../redux/searchDoctor'
 

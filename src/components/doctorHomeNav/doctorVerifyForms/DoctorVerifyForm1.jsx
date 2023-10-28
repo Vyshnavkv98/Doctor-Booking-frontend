@@ -4,8 +4,6 @@ import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -15,7 +13,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { FormControl, FormHelperText, FormLabel, MenuItem, OutlinedInput, Radio, RadioGroup, Select, CircularProgress, Snackbar, LinearProgress } from '@mui/material';
 import { useFormik } from 'formik';
 import { doctorVerifySchema } from '../../../helper/SignupSchema';
-import { Upload } from 'cloudinary-react';
 import Axios from 'axios';
 import { toast } from "react-toastify"
 import { useNavigate } from 'react-router-dom';

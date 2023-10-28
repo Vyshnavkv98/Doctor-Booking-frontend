@@ -1,5 +1,4 @@
 import React from 'react'
-import img1 from "../../assets/meds1.png"
 import img2 from "../../assets/doc3.jpg"
 import { useNavigate } from 'react-router-dom'
 

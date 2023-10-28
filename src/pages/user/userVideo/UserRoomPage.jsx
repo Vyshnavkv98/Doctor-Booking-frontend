@@ -2,9 +2,7 @@ import { Box, Grid } from '@mui/material'
 import React, { useState } from 'react'
 import TopNavBar from '../../../components/topNavBar/TopNavBar'
 import SideNavBar from '../../../components/sidenavbar/SideNavBar'
-import FindDoctorVideoConsultation from '../../../components/user/videoConsultation/FindDoctorVideoConsultation'
 import Footer from '../../../components/user/footer/Footer'
-import DoctorRoomPage from '../../doctor/doctorRoomPage/DoctorRoomPage'
 import DoctorRoom from '../../../components/doctorHomeNav/doctorVideoCall/DoctorRoom'
 
 function UserRoomPage({ value }) {

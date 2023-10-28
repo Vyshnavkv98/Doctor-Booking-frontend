@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, NavLink, Navigate, useNavigate } from 'react-router-dom';
 import { SiShopware } from 'react-icons/si';
-import { MdOutlineCancel } from 'react-icons/md';
 // import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 import { AiOutlineCalendar, AiOutlineShoppingCart, AiOutlineAreaChart, AiOutlineBarChart, AiOutlineStock } from 'react-icons/ai';
 import { FiShoppingBag, FiEdit, FiPieChart, FiBarChart, FiCreditCard, FiStar, FiShoppingCart, FiLogOut } from 'react-icons/fi';

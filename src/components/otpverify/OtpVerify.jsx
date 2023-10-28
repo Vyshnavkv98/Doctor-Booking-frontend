@@ -6,7 +6,6 @@ import OtpInput from "otp-input-react"
 function OtpVerify() {
     const[otp,setOtp]=useState("")
     const[loading,setLoading]=useState(false)
-    const[showOtp,setshowOtp]=useState(false)
 const handleOtp=(e)=>{
     setOtp(()=>{
         otp=e.target.value

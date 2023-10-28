@@ -1,7 +1,5 @@
 import React from 'react'
-import PageTitle from "../../components/admin/typography/PageTitle"
 import SectionTitle from '../../components/admin/typography/SectionTitle'
-import CTA from '../../components/admin/Cta'
 import { Table, TableHeader, TableCell, TableBody, TableRow, TableFooter, TableContainer, Pagination } from "@windmill/react-ui"
 
 function Tables() {

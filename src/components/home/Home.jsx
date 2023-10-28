@@ -1,8 +1,6 @@
 import React from 'react'
 
 import SideNavBar from '../sidenavbar/SideNavBar'
-import AddFileButton from '../addFile/AddFileButton'
-import AddFolder from '../addFile/AddFolder'
 import TopNavBar from '../topNavBar/TopNavBar'
 import UserHome from '../user/UserHome'
 import { Box, Grid } from '@mui/material'

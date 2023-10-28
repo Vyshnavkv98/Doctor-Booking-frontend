@@ -1,4 +1,4 @@
-import { Box, Button, ButtonGroup, Card, Divider, FormControlLabel, FormGroup, FormLabel, Grid, Radio, RadioGroup, TextField, Typography } from '@mui/material'
+import { Box, Button, ButtonGroup, FormGroup, FormLabel, Grid, Radio, RadioGroup, TextField, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import img1 from '../../../assets/doctorVerify.jpg'
 import { BiPencil } from 'react-icons/bi'

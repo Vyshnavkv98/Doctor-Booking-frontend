@@ -7,7 +7,6 @@ import { AppContext } from './context/AppContext';
 import LandinPage from './pages/LandinPage';
 import { login } from './redux/user';
 import { useDispatch } from 'react-redux';
-import Cookies from 'universal-cookie';
 import AdminHome from './pages/AdminHome';
 import AdminUserControl from './pages/AdminUserControl';
 import { ToastContainer, toast } from 'react-toastify';
@@ -25,23 +24,19 @@ import ManageDoctorSlots from './pages/doctor/doctorSlotAppointment/ManageDoctor
 import AnimationWrapper from './animationWrapper/AnimationWrapper';
 import DoctorVideoConsultationSlotBooking from './pages/doctor/doctorVideoConsultationSlotBooking/DoctorVideoConsultationSlotBooking';
 import DoctorOnlineAppointments from './pages/doctor/doctorOnlineAppointments/DoctorOnlineAppointments';
-import DoctorVideocall from './components/doctorHomeNav/doctorVideoCall/DoctorVideocall';
 import DoctorVideoLandingPage from './pages/doctor/doctorVideoLanding/DoctorVideoLandingPage';
 import { Suspense } from 'react';
 import Loader from './components/loader/Loader';
-import DoctorRoom from './components/doctorHomeNav/doctorVideoCall/DoctorRoom';
 import DoctorRoomPage from './pages/doctor/doctorRoomPage/DoctorRoomPage';
-import DoctorPrescription from './components/doctorHomeNav/doctorDescription/DoctorPrescription';
 import DoctorPrescriptionPage from './pages/doctor/doctorPrescription/DoctorPrescriptionPage';
 import DoctorSuccess from './components/doctorHomeNav/doctorNav/doctorVideoSuccess/DoctorSuccess';
 import MapComponent from './components/doctorHomeNav/mapcomponent/MapComponent';
-import DoctorWallet from './components/doctorHomeNav/doctorWallet/DoctorWallet';
 import DoctorWalletPage from './pages/doctor/doctorWalletPage/DoctorWalletPage';
+import Bb from './components/doctorHomeNav/mapcomponent/Bb';
 
 
 
 function App() {
-  const cookies = new Cookies()
   const [relogin, setRelogin] = useState(false)
   const [loginStatus, setLoginStatus] = useState(false)
   const [adminLoginStatus, setAdminLoginStatus] = useState(false)

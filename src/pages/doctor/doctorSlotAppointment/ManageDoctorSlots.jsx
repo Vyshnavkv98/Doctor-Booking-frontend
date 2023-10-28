@@ -1,6 +1,6 @@
 import React from 'react'
 import DoctorSideNav from '../../../components/doctorHomeNav/doctorSideNav/DoctorSideNav'
-import { Box, Button, Card, Grid, Typography } from '@mui/material'
+import { Box , Card, Grid, Typography } from '@mui/material'
 import DoctorNavBar from '../../../components/doctorHomeNav/doctorNav/DoctorNavBar'
 import ManageSlots from '../../../components/doctorHomeNav/doctorManageSlots/ManageSlots'
 

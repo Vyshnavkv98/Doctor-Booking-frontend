@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from 'react-dom/client';
 import ReactApexChart from 'react-apexcharts'
 
 const dates=[
@@ -54,11 +53,11 @@ class ApexChart extends React.Component {
     this.state = {
       series: [
         {
-          name: 'XYZ MOTORS',
+          name: 'online',
           data: dates, // First set of data
         },
         {
-          name: 'XY MOTORS',
+          name: 'offline',
           data: datess, // Second set of data
         },
       ],
@@ -105,7 +104,7 @@ class ApexChart extends React.Component {
             },
           },
           title: {
-            text: 'Price',
+            text: 'count',
           },
         },
         xaxis: {

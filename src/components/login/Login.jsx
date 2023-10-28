@@ -2,20 +2,16 @@ import React, { useEffect, useState } from 'react'
 import { useContext } from 'react';
 import { AppContext } from "../../context/AppContext";
 import { useNavigate } from "react-router-dom";
-import { Grid, Paper, Avatar, TextField, Button } from "@mui/material"
 import "../login/LoginStyle.css"
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import axios from "../../axios/axios"
-import LockIcon from '@mui/icons-material/Lock';
 import bgImg5 from "../../assets/img5.png"
-import Cookies from 'universal-cookie';
-import * as yup from "yup"
 
 
 import { userLoginValidator } from '../../validation/UserValidator';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../../redux/user';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion} from 'framer-motion';
 
 
 
@@ -24,7 +20,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 
 function Login() {
-  const cookies = new Cookies();
   const { relogin, setRelogin, loginStatus, setLoginStatus } = useContext(AppContext);
   const navigate = useNavigate()
 

@@ -23,6 +23,7 @@ import DoctorProfileUserSide from '../pages/user/doctorProfilePage/DoctorProfile
 import DoctorProfile from '../components/user/doctorList/DoctorProfile';
 import AppointmentRecordTable from '../components/user/appointmentTable/AppointmentRecordTable';
 import UserAppointmentRecordPage from '../pages/user/userAppointmentsRecordPage/UserAppointmentRecordPage'
+import UserWallet from '../pages/user/userWallet/UserWallet';
 
 
 
@@ -47,6 +48,7 @@ const AnimationWrapper = () => {
             <Route path='/doctor-book' element={<ListAllDoctor />}></Route>
             <Route path='/appointment' element={<AppointmentConfirmation />}></Route>
             <Route path='/payment-success' element={<PaymentSuccess />}></Route>
+            <Route path='/user-wallet' element={<UserWallet />}></Route>
             <Route path='/doctor-profileinfo' element={<DoctorProfileUserSide />}></Route>
             <Route path='/video-consultation' element={<SearchDoctorVideoConsultation />}></Route>
             <Route path='/doctor-book-video-consultation' element={<DoctorListVideo />}></Route>

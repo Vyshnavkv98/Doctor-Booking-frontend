@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from '../components/admin/sidebar/Sidebar';
-import DocTable from '../components/admin/table/DocTable';
 import axios from '../axios/axios';
 import SerachForm from '../components/admin/searchForm/SerachForm';
 import { GrUserAdmin } from 'react-icons/gr';

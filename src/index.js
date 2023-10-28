@@ -1,19 +1,16 @@
 import React, { useContext } from 'react';
-import { configureStore } from '@reduxjs/toolkit'
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux'
-import userReducer from './redux/user'
-import adminReducer from './redux/admin'
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import { initializeApp } from 'firebase/app';
-import { firebaseConfig } from './firebase';
+// import { initializeApp } from 'firebase/app';
+// import { firebaseConfig } from './firebase';
 import { ContextProvider } from './context/ContextProvider';
 import store, { persistor } from './store';
 import { PersistGate } from 'redux-persist/integration/react';
 import { SocketProvider } from './context/SocketProvider';
-initializeApp(firebaseConfig);
+// initializeApp(firebaseConfig);
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
