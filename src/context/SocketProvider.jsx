@@ -7,7 +7,7 @@ export const useSocket=()=>{
     return  socket
 }
 export const SocketProvider = (props) => {
-    const socket=useMemo(()=>io('http://localhost:5000/'),[])
+    const socket=useMemo(()=>io('https://medss.online/'),[])
     return (
         <SocketContext.Provider value={socket}>
             {props.children}
@@ -15,4 +15,4 @@ export const SocketProvider = (props) => {
     )
 }
 
-//https://medss.online/
+//http://localhost:5000/
