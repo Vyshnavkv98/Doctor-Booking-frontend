@@ -1,7 +1,6 @@
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Container, Grid, Link, Paper, Typography } from '@mui/material'
 import imgBanner from '../../assets/docBanner.png'
 import React from 'react'
-import img1 from '../../assets/img1.jpg'
 import img2 from '../../assets/img1.webp'
 import img3 from '../../assets/img2.webp'
 import img4 from '../../assets/img3.webp'

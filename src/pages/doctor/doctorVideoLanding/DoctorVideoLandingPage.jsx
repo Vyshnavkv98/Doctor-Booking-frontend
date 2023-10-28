@@ -1,12 +1,9 @@
 import React, { useState } from 'react'
 import DoctorVideocall from '../../../components/doctorHomeNav/doctorVideoCall/DoctorVideocall'
 import { Box, Grid } from '@mui/material'
-import TopNavBar from '../../../components/topNavBar/TopNavBar'
-import SideNavBar from '../../../components/sidenavbar/SideNavBar'
 import Footer from '../../../components/user/footer/Footer'
 import DoctorSideNav from '../../../components/doctorHomeNav/doctorSideNav/DoctorSideNav'
 import DoctorNavBar from '../../../components/doctorHomeNav/doctorNav/DoctorNavBar'
-import { useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 function DoctorVideoLandingPage() {

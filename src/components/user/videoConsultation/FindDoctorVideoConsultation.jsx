@@ -4,7 +4,6 @@ import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
 import MedicationIcon from '@mui/icons-material/Medication';
 import MessageIcon from '@mui/icons-material/Message';
 import img1 from '../../../assets/videoConsult.png'
-import img2 from '../../../assets/gynaecologist.svg'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import axios from '../../../axios/axios'

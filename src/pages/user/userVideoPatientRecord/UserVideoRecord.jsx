@@ -7,7 +7,6 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { Box, Button } from '@mui/material';
 import bg1 from '../../../assets/doctor.jpg'
-import { MarginOutlined } from '@mui/icons-material';
 import axios from '../../../axios/axios'
 import ConfirmationModal from '../../../components/modal/ConfirmationModal'
 import { toast } from 'react-toastify';
@@ -15,7 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setVideocalldata } from '../../../redux/videocall'
 import { useSocket } from '../../../context/SocketProvider';
-import { appointments } from '../../../redux/appointment'
+import DownloadButton from '../../../services/DownloadButton';
 
 export default function UserVideoRecord(props) {
   const dispatch = useDispatch()
@@ -23,7 +22,6 @@ export default function UserVideoRecord(props) {
   const [room, setRoom] = React.useState()
   const [appointments, setAppointments] = React.useState(null)
   const [modalOpen, setModalOpen] = React.useState(false)
-  const [status, setStatus] = React.useState(false)
   const [id, setId] = React.useState(false)
   const [refresh, setRefresh] = React.useState(false)
 
@@ -64,13 +62,13 @@ export default function UserVideoRecord(props) {
 
   React.useEffect(() => {
     (async () => {
-      const res = await axios.get('/get-appointments')
+      const res = await axios.get('/user-video-appointments')
       if (res.status === 200) {
         setAppointments([...res.data.appointments])
       }
     })()
   }, [refresh])
-  console.log(appointments)
+  console.log(appointments, 'from video rec')
   const openModal = () => {
     setModalOpen(true);
   };
@@ -145,16 +143,41 @@ export default function UserVideoRecord(props) {
               </Typography>
             </CardContent>
             <Grid margin={2} display={'flex'} alignItems={'center'}>
-
-              {appointment.status === 'Cancelled' ? <Button variant='contained' color='primary' disabled >canceled</Button> : (
+              {appointment.prescription.length > 0 ? (
+                <DownloadButton appointment={appointment} />
+              ) : appointment.status === 'Cancelled' ? (
+                <Button variant='contained' color='primary' disabled>
+                  Canceled
+                </Button>
+              ) : !room ? (
                 <>
-                  <Button variant='outlined' onClick={() => handleCancel(appointment._id)}>Cancel</Button>
-                  {
-                    !room && <Button variant='contained' sx={{ ml: '0.5rem' }} color='success' onClick={() => { return setModalOpen(true), setId(appointment._id), handleVideocall(appointment.name, appointment.email, appointment.reason, appointment.date, appointment.time, appointment.mobile, appointment.user, appointment._id) }}>Accept</Button>
-                  }
+                  <Button variant='outlined' onClick={() => handleCancel(appointment._id)}>
+                    Cancel
+                  </Button>
+                  <Button
+                    variant='contained'
+                    sx={{ ml: '0.5rem' }}
+                    color='success'
+                    onClick={() => {
+                      setModalOpen(true);
+                      setId(appointment._id);
+                      handleVideocall(
+                        appointment.name,
+                        appointment.email,
+                        appointment.reason,
+                        appointment.date,
+                        appointment.time,
+                        appointment.mobile,
+                        appointment.user,
+                        appointment._id
+                      );
+                    }}
+                  >
+                    Accept
+                  </Button>
                 </>
-              )
-              }
+              ) : null}
+
 
               <ConfirmationModal open={modalOpen} onClose={closeModal} />
             </Grid>

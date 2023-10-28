@@ -7,23 +7,26 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { Box, Button } from '@mui/material';
 import bg1 from '../../../assets/doctor.jpg'
-import { MarginOutlined } from '@mui/icons-material';
 import axios from '../../../axios/axios'
 import ConfirmationModal from '../../modal/ConfirmationModal'
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setVideocalldata } from '../../../redux/videocall'
+import { useSocket } from '../../../context/SocketProvider';
 
 export default function PatientDetails(props) {
   const dispatch = useDispatch()
   const [appointments, setAppointments] = React.useState(null)
   const [modalOpen, setModalOpen] = React.useState(false)
+  const [cancelModalOpen, setCancelModalOpen] = React.useState(false)
   const [status, setStatus] = React.useState(false)
+  const [refresh, setRefresh] = React.useState(false)
   const [id, setId] = React.useState(false)
+  
 
   const navigate = useNavigate()
-
+const socket=useSocket()
   React.useEffect(() => {
     (async () => {
       const res = await axios.get('/get-appointments')
@@ -31,8 +34,7 @@ export default function PatientDetails(props) {
         setAppointments([...res.data.appointments])
       }
     })()
-  }, [])
-  console.log(appointments)
+  }, [refresh])
   const openModal = () => {
     setModalOpen(true);
   };
@@ -40,9 +42,14 @@ export default function PatientDetails(props) {
   const closeModal = () => {
     setModalOpen(false);
   };
+  const closeCancelModal = () => {
+    setCancelModalOpen(false);
+  };
+
 
   const handleConfirm = async () => {
     const res = await axios.post("/confirm-video-consultation-appointment", { status: 'confirmed', id: id })
+    setRefresh(!refresh)
     if (res.status == 200) {
       setStatus(true)
       toast.success('updated successfully', {
@@ -51,7 +58,8 @@ export default function PatientDetails(props) {
       })
     }
   }
-  const handlePrescription=()=>{
+
+  const handlePrescription = () => {
     navigate('/doctor-prescription')
   }
 
@@ -59,6 +67,19 @@ export default function PatientDetails(props) {
     const data = { name, email, reason, date, time, mobile, user, _id }
     dispatch(setVideocalldata(data))
     navigate('/doctor-video-landing')
+
+  }
+
+  const handleCancel = async () => {
+    const res = await axios.post("/confirm-video-consultation-appointment", { status: 'Cancelled', id: id })
+    setRefresh(!refresh)
+    if (res.status == 200) {
+      setStatus(true)
+      toast.success('updated successfully', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 3000
+      })
+    }
   }
 
   return (
@@ -76,7 +97,7 @@ export default function PatientDetails(props) {
                 display: 'flex',
                 flexDirection: 'column',
                 // justifyContent: 'center',
-                // alignItems: 'start',
+                alignItems: 'start',
                 m: 2,
                 p: 4,
                 backgroundColor: '#F0F5F5',
@@ -107,22 +128,28 @@ export default function PatientDetails(props) {
                 Reason:  {appointment.reason}
               </Typography>
             </CardContent>
-            <Grid margin={2} display={'flex'} alignItems={'center'}>
+            <Grid margin={2} display={'flex'} alignItems={'center'} gap={1}>
 
-              {appointment.status === "pending" ? <> (
-
-                <Button variant='outlined' onClick={() => { return setModalOpen(true), setId(appointment._id) }}>Confirm</Button>
-
-                ) </> : (
-                <>
-                  {appointment.status === "completed" ? (
-                    <Button variant='outlined' onClick={() => handlePrescription(appointment._id)}>Prescription</Button>
-                  ) : (
-                    <Button variant='outlined' onClick={() => { return setModalOpen(true), setId(appointment._id), handleVideocall(appointment.name, appointment.email, appointment.reason, appointment.date, appointment.time, appointment.mobile, appointment.user, appointment._id) }}>Call</Button>
-                  )}
-                </>
-              )}
+              {
+                appointment.status === "Scheduled" ? (
+                  <>
+                    <Button variant='outlined' onClick={() => { return setModalOpen(true), setId(appointment._id) }}>Confirm</Button>
+                    <Button sx={{ ml: '0.5rem' }} variant='outlined' color='error' onClick={() => { return setCancelModalOpen(true), setId(appointment._id) }}>Cancel</Button>
+                  </>
+                ) : (
+                  <>
+                    {appointment.status === "completed" ? (
+                      <Button variant='outlined' onClick={() => handlePrescription(appointment._id)}>Prescription</Button>
+                    ) : appointment.status === "Cancelled" ? (
+                      <Button variant='outlined' disabled>Cancelled</Button>
+                    ) : (
+                      <Button variant='outlined' onClick={() => { return setModalOpen(true), setId(appointment._id), handleVideocall(appointment.name, appointment.email, appointment.reason, appointment.date, appointment.time, appointment.mobile, appointment.user, appointment._id) }}>Call</Button>
+                    )}
+                  </>
+                )
+              }
               <ConfirmationModal open={modalOpen} onClose={closeModal} onConfirm={() => handleConfirm()} />
+              <ConfirmationModal open={cancelModalOpen} onClose={closeCancelModal} onConfirm={() => handleCancel()} />
 
             </Grid>
             <CardMedia

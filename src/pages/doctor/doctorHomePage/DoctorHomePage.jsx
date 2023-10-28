@@ -1,10 +1,8 @@
 import React from 'react'
 import DoctorNavBar from '../../../components/doctorHomeNav/doctorNav/DoctorNavBar'
 import DoctorSideNav from '../../../components/doctorHomeNav/doctorSideNav/DoctorSideNav'
-import PatientDetails from '../../../components/doctorHomeNav/doctor-patients/PatientDetails'
 import { Box, Grid } from '@mui/material'
 import DoctorDashboard from '../../../components/doctorHomeNav/doctorDashboard/DoctorDashboard'
-import Footer from '../../../components/user/footer/Footer'
 
 function DoctorHomePage() {
   const [open, setOpen] = React.useState(true);
@@ -29,6 +27,7 @@ function DoctorHomePage() {
         display="flex"
         flexDirection="column"
         ml={open ? '7rem' : '20.5rem'}
+        bgcolor={'black'}
       >
         <DoctorDashboard />
         <Grid mt={3}>

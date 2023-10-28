@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import axios from '../../../axios/axios'
 import CircularProgress from '@mui/material/CircularProgress';
 import { Box, Button, Modal, Typography } from '@mui/material';
-import LogoutModal from '../../modal/LogoutModal'
 import { useNavigate } from 'react-router-dom';
 
 

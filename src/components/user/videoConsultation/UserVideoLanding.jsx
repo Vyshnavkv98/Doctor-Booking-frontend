@@ -24,7 +24,7 @@ function UserVideoLanding(props) {
         navigate(-1)
     }
     const email=props.email
-    const room=userData?._id.concat(userData?.user)
+    const room=userData?._id.concat(userData?.user._id)
     const handleConnect = useCallback(() => {
      socket.emit('Room:join',{email,room})
     },[email,room,socket])

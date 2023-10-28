@@ -1,7 +1,7 @@
 import { Box, Paper, Grid, Typography, TextField, FormLabel, Button } from '@mui/material'
 import React, { useCallback, useEffect, useState } from 'react'
+import {useNavigate} from 'react-router-dom'
 import bimg from '../../../assets/bimg3.png'
-import Axios from 'axios';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -33,7 +33,7 @@ function DoctorPrescription() {
     }))
   }
 
-
+const navigate=useNavigate()
 
   const handleSetAllPrescription = () => {
     let flag = true
@@ -77,7 +77,7 @@ function DoctorPrescription() {
   }, [allPrescription])
 
 
-  const handleSubmit = useCallback(async (e) => {
+  const handleSubmit = (async (e) => {
     e.preventDefault()
     if (allPrescription.length > 0 && Object.keys(prescription).length > 0) {
       const response = await axios.post('/add-prescription', { id: videoCallData._id, allPrescription: allPrescription, prescription: prescription })
@@ -87,10 +87,11 @@ function DoctorPrescription() {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 2000
         })
+        navigate(-1)
       }
     }
 
-  }, [])
+  })
 
   return (
     <Box

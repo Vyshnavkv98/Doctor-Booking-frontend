@@ -1,7 +1,5 @@
 import React, { useState,useEffect } from 'react'
-import DoctorVideoSlotManage from '../../../components/doctorHomeNav/doctorVideoSlots/DoctorVideoSlotMange'
 import { Box, Grid } from '@mui/material'
-import TopNavBar from '../../../components/topNavBar/TopNavBar'
 import axios from '../../../axios/axios'
 import Footer from '../../../components/user/footer/Footer'
 import DoctorSideNav from '../../../components/doctorHomeNav/doctorSideNav/DoctorSideNav'

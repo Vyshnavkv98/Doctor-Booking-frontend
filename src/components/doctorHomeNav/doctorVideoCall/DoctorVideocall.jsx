@@ -2,7 +2,7 @@ import { Grid, Box, Typography, Button, Paper } from '@mui/material'
 import React, { useEffect,useState,useCallback } from 'react'
 import img from '../../../assets/videocall1.png'
 import img1 from '../../../assets/avatar.svg'
-import { useLocation, useNavigate } from 'react-router-dom'
+import {useNavigate } from 'react-router-dom'
 import {useSelector} from 'react-redux'
 import {useSocket} from '../../../context/SocketProvider'
 

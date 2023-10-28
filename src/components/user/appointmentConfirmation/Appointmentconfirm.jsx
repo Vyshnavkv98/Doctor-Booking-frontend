@@ -9,8 +9,6 @@ import { useFormik } from 'formik';
 import { AppointmentSchema } from '../../../helper/AppointmentSchema';
 import axios from '../../../axios/axios'
 // import {Link} from 'react-router-dom'
-import appointment from '../../../redux/appointment'
-import {loadStripe} from '@stripe/stripe-js'
 
 function Appointmentconfirm() {
   const navigate=useNavigate()

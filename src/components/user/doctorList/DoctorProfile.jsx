@@ -1,5 +1,4 @@
 import { Box, Card, CardContent, Divider, Grid, Paper, Rating, Typography } from '@mui/material'
-import { lightBlue } from '@mui/material/colors'
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';

@@ -6,9 +6,9 @@ import { Table, TableContainer, TableRow } from '@windmill/react-ui'
 
 function DoctorDashboard() {
   return (
-    <Grid   bgcolor={'black'}>
+    <Grid  height={'100%'} bgcolor={'black'} mt={8}>
       {/* <Typography variant='h4' m={2} fontWeight={700} color={'white'}>Dashboard</Typography> */}
-      <Grid display={'flex'} height={'56%'} mt={8} ml={5} mr={5} >
+      <Grid display={'flex'} height={'56%'} mt={5} ml={5} mr={5} >
         <Grid width={'40%'} display={'flex'} flexWrap={'wrap'} m={3} item justifyContent={'end'}>
           <Grid >
             <Grid display={'flex'} width={'100%'}>

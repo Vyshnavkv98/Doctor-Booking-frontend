@@ -3,11 +3,6 @@ import React, { useEffect, useState } from 'react'
 import img1 from '../../../assets/img2.jpg'
 import { Link, useNavigate } from 'react-router-dom'
 import { format } from 'date-fns';
-import { doc } from 'firebase/firestore';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import dayjs from 'dayjs';
 import { ArrowBack, ArrowForward } from '@mui/icons-material';
 
@@ -16,7 +11,6 @@ function DoctorList({ doctors }) {
   const [doctorList, setDoctorList] = useState([])
   const [selectedDate, setSelectedDate] = useState('')
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [appointmentData, setAppointmentData] = useState({});
   const [selectedDoctorIndex, setSelectedDoctorIndex] = useState(null);
 
   const navigate=useNavigate()

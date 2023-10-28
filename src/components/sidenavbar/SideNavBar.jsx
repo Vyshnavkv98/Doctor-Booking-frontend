@@ -1,24 +1,20 @@
 
 import { useState } from "react"
 import React  from 'react'
-import axios from "../../axios/axios"
 import {BsArrowLeftCircleFill} from "react-icons/bs"
 import {BsArrowRightCircleFill} from "react-icons/bs"
 import {BsChevronDown} from "react-icons/bs"
 import {CiSearch} from "react-icons/ci"
 import {RiUserShared2Line} from "react-icons/ri"
 import {MdOutlineRecentActors} from "react-icons/md"
-import {GoTrash} from "react-icons/go"
 import {LuStars} from "react-icons/lu"
 import {LuLogOut} from "react-icons/lu"
-import {BiAddToQueue} from "react-icons/bi"
 import {CgProfile} from "react-icons/cg"
 import {BsChatLeftDots} from "react-icons/bs"
 import {RiSecurePaymentLine} from "react-icons/ri"
 import { useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
 
-import LogoutModal from '../modal/LogoutModal'
 function SideNavBar({handleSidenav}) {
 const navigate=useNavigate()
 
@@ -69,6 +65,10 @@ const navigate=useNavigate()
     }
     if(title==='Appointments'){
       navigate('/patient-record-offline')
+      
+    }
+    if(title==='Payments'){
+      navigate('/user-wallet')
       
     }
 

@@ -1,9 +1,7 @@
 import React from 'react'
 import DoctorNavBar from '../../../components/doctorHomeNav/doctorNav/DoctorNavBar'
 import DoctorSideNav from '../../../components/doctorHomeNav/doctorSideNav/DoctorSideNav'
-import DoctorVer from '../../../components/doctorHomeNav/doctor-ver/Doctor-ver'
 import imgDoc from '../../../assets/doctor_Detail.webp'
-import { ImageList } from '@mui/material'
 import DoctorVerifyForm1 from '../../../components/doctorHomeNav/doctorVerifyForms/DoctorVerifyForm1'
 
 function DoctorVerifyData1() {

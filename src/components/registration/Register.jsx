@@ -1,28 +1,16 @@
 import React, { useState } from 'react'
-import bgImg from "../../assets/img1.jpg"
 import bgImg2 from '../../assets/doctor.jpg'
-import { useForm } from 'react-hook-form';
 import { FormLabel, Grid, TextField } from '@mui/material';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import "./Registration.css"
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 import { BsFillShieldLockFill } from "react-icons/bs";
 import { CgSpinner } from "react-icons/cg";
 import OtpInput from "otp-input-react"
-import { auth } from "../../firebase";
 import { toast } from "react-toastify"
-import { signInWithPhoneNumber, RecaptchaVerifier } from 'firebase/auth';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { collection, addDoc } from 'firebase/firestore';
-import { firestore } from '../../firebase';
 import axios from '../../axios/axios';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from "formik"
 import { signUpSchema } from '../../helper/SignupSchema';
-import { boolean } from 'yup';
 import { motion, AnimatePresence } from 'framer-motion';
 
 

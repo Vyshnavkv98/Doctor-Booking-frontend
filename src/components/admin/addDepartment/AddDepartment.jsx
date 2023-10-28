@@ -6,7 +6,6 @@ import { toast } from 'react-toastify'
 import Axios from 'axios'
 import axios from '../../../axios/axios'
 import { Link, useNavigate } from 'react-router-dom'
-import { login } from '../../../redux/user'
 
 
 function AddDepartment() {
