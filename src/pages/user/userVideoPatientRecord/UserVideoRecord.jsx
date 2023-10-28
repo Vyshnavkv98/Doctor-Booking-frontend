@@ -62,7 +62,7 @@ export default function UserVideoRecord(props) {
 
   React.useEffect(() => {
     (async () => {
-      const res = await axios.get('/user-video-appointments')
+      const res = await axios.get('/user-appointments')
       if (res.status === 200) {
         setAppointments([...res.data.appointments])
       }
