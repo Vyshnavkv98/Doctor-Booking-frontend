@@ -37,6 +37,13 @@ instance.interceptors.response.use(
         autoClose: 500
       })
     }
+    if (error.response.status === 401) {
+      toast.error(`token expired`, {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 500
+      })
+      window.location.href = '/login'
+    }
 
     if (error.response.status === 403) {
       localStorage.removeItem('access-token')

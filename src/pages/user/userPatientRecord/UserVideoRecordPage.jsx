@@ -24,14 +24,10 @@ function UserVideoRecordPage() {
                 <Grid position={'fixed'} mt={'6rem'}>
                     <SideNavBar handleSidenav={handleSidenav} />
                 </Grid>
-               {open &&  <Grid width={'100%'} mt={2} display={'flex'} flexDirection={'column'} ml={'22rem'} marginTop={'7rem'}>
+              <Grid width={'100%'} mt={2} display={'flex'} flexDirection={'column'} ml={open?'22rem':'8rem'} marginTop={'7rem'}>
                     <UserVideoRecord />
                     <Grid mt={3}><Footer /></Grid>
-                </Grid>}
-               {!open &&  <Grid width={'100%'} mt={2} display={'flex'} flexDirection={'column'} ml={'8rem'} marginTop={'7rem'}>
-                    <UserVideoRecord />
-                    <Grid mt={3}><Footer /></Grid>
-                </Grid>}
+                </Grid>             
             </Grid>
         </Box>
     )

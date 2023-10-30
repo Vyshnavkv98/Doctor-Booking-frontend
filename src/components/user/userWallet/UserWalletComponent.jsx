@@ -10,27 +10,35 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { Avatar, Box, Button, Grid, IconButton, Typography } from '@mui/material';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
+import { PropagateLoader } from 'react-spinners';
+import { SpinnerCircular, SpinnerRoundOutlined } from 'spinners-react'
+import { motion } from 'framer-motion';
+
 
 
 
 function UserWalletComponent(props) {
     const [appointments, setAppointments] = useState([]);
     const [total, setTotal] = useState(0);
+    const [isLoading, setIsLoading] = useState(true);
 
 
 
     useEffect(() => {
         setAppointments([...props.appointments])
 
-        if(appointments){
-            appointments.reduce((item,prevTotal) => {
-                 return prevTotal += (Number(item.fee * 60 / 100))
-                  setTotal(prevTotal)
-              },0) 
+         if(appointments.length>0)setIsLoading(false)
+
+        if (appointments) {
+            
+            appointments.reduce((item, prevTotal) => {
+                return prevTotal += (Number(item.fee * 60 / 100))
+                setTotal(prevTotal)
+            }, 0)
         }
-   
-console.log(total,'total')
-    },[])
+
+        console.log(total, 'total')
+    }, [appointments])
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -71,47 +79,49 @@ console.log(total,'total')
                                 </Grid>
                             </Paper>
                             <Paper sx={{ width: '35%', height: '6rem', mt: 1, mb: 1 }}>
-
+                                
                             </Paper>
                         </Grid>
-                        <Paper sx={{ width: '97%', height: '50rem', m: '2px', mt: 1, borderRadius: 2 }}>
-                            <TableContainer sx={{minHeight:'40vh', bgcolor: 'rgba(255,255,255,0.6)' }}>
-                                <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-                                    <TableHead>
-                                        <TableRow>
-                                            <TableCell align="right">image</TableCell>
-                                            <TableCell align="right">name&nbsp;</TableCell>
-                                            <TableCell align="right">email&nbsp;</TableCell>
-                                            <TableCell align="right">amount&nbsp;</TableCell>
-                                            <TableCell align="right">status&nbsp;</TableCell>
-                                        </TableRow>
-                                    </TableHead>
-                                    <TableBody>
-                                        {props.appointments.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-                                            <TableRow
-                                                key={row.name}
-                                                sx={{ '&:last-child td, &:last-child th': { border: 0 }, mt: 3 }}
-                                            >
-                                                <TableCell align="right">
-                                                    <Avatar
-                                                        variant="rounded"
-                                                        sx={{ width: '50px', height: '50px', objectFit: 'cover', objectPosition: 'center' }}
-                                                        src={`${row.user.profileImg}`}
-                                                        alt=""
-                                                    />
-                                                </TableCell>
-                                                <TableCell align="right">{row.name}</TableCell>
-                                                <TableCell align="right">{row.email}</TableCell>
-                                                <TableCell align="right">₹{row.fee * 60 / 100}</TableCell>
-                                                <TableCell align="right" sx={{ color: 'green' }}><Button sx={{color:'white',backgroundColor:'green', borderRadius:2,fontSize:12}}>Credited</Button></TableCell>
-                                                {/* <TableCell align="right">
+                        <Paper sx={{ minWidth: '97%', height: '50rem', m: '2px', mt: 1, borderRadius: 2 }}>
+                            {isLoading ?(<Grid width={'100%'} height={'100%'} display={'flex'} justifyContent={'center'}><SpinnerRoundOutlined size={50} thickness={100} speed={100} color="#36ad47" /></Grid>) : 
+                               <TableContainer sx={{ minHeight: '40vh', bgcolor: 'rgba(255,255,255,0.6)' }}>
+                                    <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+                                        <TableHead>
+                                            <TableRow>
+                                                <TableCell align="right">image</TableCell>
+                                                <TableCell align="right">name&nbsp;</TableCell>
+                                                <TableCell align="right">email&nbsp;</TableCell>
+                                                <TableCell align="right">amount&nbsp;</TableCell>
+                                                <TableCell align="right">status&nbsp;</TableCell>
+                                            </TableRow>
+                                        </TableHead>
+                                        <TableBody>
+                                            {props.appointments.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
+                                                <TableRow
+                                                    key={row.name}
+                                                    sx={{ '&:last-child td, &:last-child th': { border: 0 }, mt: 3 }}
+                                                >
+                                                    <TableCell align="right">
+                                                        <Avatar
+                                                            variant="rounded"
+                                                            sx={{ width: '50px', height: '50px', objectFit: 'cover', objectPosition: 'center' }}
+                                                            src={`${row.user.profileImg}`}
+                                                            alt=""
+                                                        />
+                                                    </TableCell>
+                                                    <TableCell align="right">{row.name}</TableCell>
+                                                    <TableCell align="right">{row.email}</TableCell>
+                                                    <TableCell align="right">₹{row.fee * 60 / 100}</TableCell>
+                                                    <TableCell align="right" sx={{ color: 'green' }}><Button sx={{ color: 'white', backgroundColor: 'green', borderRadius: 2, fontSize: 12 }}>Credited</Button></TableCell>
+                                                    {/* <TableCell align="right">
                                         <Button variant='contained' color='warning'>cancel<CancelIcon color='error'/></Button>
                                     </TableCell> */}
-                                            </TableRow>
-                                        ))}
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
+                                                </TableRow>
+                                            ))}
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
+                            }
                             <TablePagination
                                 rowsPerPageOptions={[10, 25, 100]}
                                 component="div"
