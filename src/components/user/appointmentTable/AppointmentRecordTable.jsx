@@ -8,13 +8,15 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import { Box, Button, IconButton } from '@mui/material';
+import { Box, Button, Grid, IconButton } from '@mui/material';
 import CancelIcon from '@mui/icons-material/Cancel';
 import DownloadButton from '../../../services/DownloadButton';
+import { toast } from 'react-toastify';
 
 function AppointmentRecordTable() {
     const [appointments, setAppointments] = useState([]);
     const [page, setPage] = useState(0);
+    const [refresh, setRefresh] = useState(false);
     const [rowsPerPage, setRowsPerPage] = useState(10);
 
     const handleDelete = useCallback((row) => {
@@ -25,6 +27,23 @@ function AppointmentRecordTable() {
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
+
+    const handleCancel = async (appointmentId) => {
+        try {
+          const response = await axios.post("/cancel-appointment", { appointmentId: appointmentId })
+          console.log(response.data.appointmentData);
+          if (response.status == 201) {
+            setRefresh(!refresh)
+            toast.success('Appointment cancelled', {
+              position: toast.POSITION.TOP_CENTER,
+              autoClose: 2000
+            })
+          }
+        } catch (error) {
+          console.log(error);
+        }
+    
+      }
 
     const handleChangeRowsPerPage = (event) => {
         setRowsPerPage(+event.target.value);
@@ -43,7 +62,7 @@ function AppointmentRecordTable() {
 
         fetchAppointments();
         console.log(appointments,'from offlirr');
-    }, []);
+    }, [refresh]);
 
     return (
         <Box sx={{ display: 'flex', justifyContent: 'center' }}>
@@ -73,7 +92,12 @@ function AppointmentRecordTable() {
                                     <TableCell align="right">{row.date}</TableCell>
                                     <TableCell align="right">
                                         {/* <DownloadButton /> */}
-                                    <CancelIcon color='error' />
+                                    
+                                        {row.status=="Cancelled"?<Button disabled>Cancelled</Button>:
+                                        <Grid onClick={()=>{handleCancel(row._id)}}><CancelIcon color='error' />
+                                         </Grid>
+                                    }
+                                       
                                     </TableCell>
                                 </TableRow>
                             ))}

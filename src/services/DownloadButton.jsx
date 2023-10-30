@@ -14,7 +14,7 @@ function DownloadButton({ appointment }) {
     return (
         <>
             <PDFDownloadLink document={<MyPdf data={appointment} />} fileName="Prescription.pdf">
-                 <FiDownload style={{fontSize:'2rem',color:'green'}}/>
+                <Button>Download <FiDownload style={{fontSize:'1rem',color:'green'}}/></Button>
             </PDFDownloadLink>
         </>
     )
