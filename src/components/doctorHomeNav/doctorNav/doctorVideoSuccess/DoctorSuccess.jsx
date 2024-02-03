@@ -4,7 +4,7 @@ import img from '../../../../assets/meeting.gif'
 import { useNavigate } from 'react-router-dom'
 
 function DoctorSuccess({ value }) {
-    const [countdown, setCountdown] = useState(25)
+    const [countdown, setCountdown] = useState(250)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -27,8 +27,8 @@ function DoctorSuccess({ value }) {
 
     return (
         <Grid>
-            <CircularProgress variant="determinate" value={(countdown / 25) * 100} sx={{ m: '2rem' }}></CircularProgress>
-            <Grid display={'flex'} alignItems={'center'} flexDirection={'column'} justifyContent={'center'} >
+            <CircularProgress variant="determinate" value={(countdown / 5) * 100} sx={{ m: '2rem' }}></CircularProgress>
+            <Grid display={'flex'} alignItems={'center'} flexDirection={'column'}>
                 <Grid width={'30rem'} display={'flex'} alignItems={'center'} flexDirection={'column'} mt={'13rem'} >
                     <Typography variant='h3' fontSize={30} font fontWeight={600}>
                         You left the meeting

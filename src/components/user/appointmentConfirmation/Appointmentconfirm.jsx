@@ -1,4 +1,4 @@
-import { Box, Button, Divider, FormControl, FormControlLabel, FormLabel, Grid, MenuItem,Link, Paper, Radio, RadioGroup, TextField, Typography } from '@mui/material'
+import { Box, Button, Divider, FormControl, FormControlLabel, FormLabel, Grid, MenuItem, Link, Paper, Radio, RadioGroup, TextField, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import HomeIcon from '@mui/icons-material/Home';
 import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
@@ -11,7 +11,7 @@ import axios from '../../../axios/axios'
 // import {Link} from 'react-router-dom'
 
 function Appointmentconfirm() {
-  const navigate=useNavigate()
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const [doctor, setDoctor] = useState({})
   const [userDetails, setUserDetails] = useState({})
@@ -24,14 +24,14 @@ function Appointmentconfirm() {
     setDoctor({ ...doctors })
 
     const slotData = location.state
-    setSlotdata(slotData.doctor)  
+    setSlotdata(slotData.doctor)
 
   }, [])
-  
-  const handleViewDoctorProfile=()=>{
 
-    navigate('/doctor-profileinfo',{state:slotdata})
-    
+  const handleViewDoctorProfile = () => {
+
+    navigate('/doctor-profileinfo', { state: slotdata })
+
   }
   const { errors, handleSubmit, handleBlur, handleChange, values } = useFormik({
     initialValues: {
@@ -45,25 +45,25 @@ function Appointmentconfirm() {
     onSubmit: async () => {
       try {
         let appointmentDetails
-        if(location.state.video){
-          console.log('fffff');
-        const appointmentData = { ...slotdata,date:location.state.date,time:location.state.time, name: values.name, mobile: values.mobile,email: values.email, reason: values.reason, fee: values.consultaionFee, userId: userData._id, doctorId: doctor._id,videoConsult:'true'  }
-         appointmentDetails = await axios.post('/add-appointment', appointmentData)
-        }else{
-          const appointmentData = { ...slotdata,date:location.state.date,time:location.state.time, name: values.name, mobile: values.mobile,email: values.email, reason: values.reason, fee: values.consultaionFee, userId: userData._id, doctorId: doctor._id,}
-         appointmentDetails = await axios.post('/add-appointment', appointmentData)
+        if (location.state.video) {
+          const appointmentData = { ...slotdata, date: location.state.date, time: location.state.time, name: values.name, mobile: values.mobile, email: values.email, reason: values.reason, fee: values.consultaionFee, userId: userData._id, doctorId: doctor._id, videoConsult: 'true' }
+          appointmentDetails = await axios.post('/add-appointment', appointmentData)
+        } else {
+          const appointmentData = { ...slotdata, date: location.state.date, time: location.state.time, name: values.name, mobile: values.mobile, email: values.email, reason: values.reason, fee: values.consultaionFee, userId: userData._id, doctorId: doctor._id, }
+          appointmentDetails = await axios.post('/add-appointment', appointmentData)
         }
 
-        if (appointmentDetails?.status===201) {  
+        if (appointmentDetails?.status === 201) {
           //  dispatch(appointment(appointmentDetails));
-          const paymetInfo={name:values.name,RegisterFee:500}
-          await axios.post("/create-checkout-session",paymetInfo)
-          .then((res)=>{
-            if(res.data.paymentDetail){
-              window.location.href=res.data.paymentDetail
-            }
-          })
-          .catch((err)=>console.log(err.message))
+          const paymentInfo = { name: values.name, RegisterFee: 500 ,id:appointmentDetails.data.appointmentData._id}
+          console.log(paymentInfo)
+          await axios.post("/create-checkout-session", paymentInfo)
+            .then((res) => {
+              if (res.data.paymentDetail) {
+                window.location.href = res.data.paymentDetail
+              }
+            })
+            .catch((err) => console.log(err.message))
         }
 
       } catch (error) {
@@ -84,9 +84,9 @@ function Appointmentconfirm() {
               <Grid width={'100%'} display={'flex'} m={2}>
                 <HomeIcon sx={{ backgroundColor: 'green', color: 'white', borderRadius: '100%' }} />
 
-                {location.state.video?<Typography variant='subtitle1' fontWeight={600} ml={3}>
+                {location.state.video ? <Typography variant='subtitle1' fontWeight={600} ml={3}>
                   Video consultation Appointment
-                </Typography>:<Typography variant='subtitle1' fontWeight={600} ml={3}>
+                </Typography> : <Typography variant='subtitle1' fontWeight={600} ml={3}>
                   In-clinic Appointment
                 </Typography>}
 
@@ -138,7 +138,7 @@ function Appointmentconfirm() {
               <Grid width={'90%'} display={'flex'} m={2} ml={3} >
                 <img src={doctor.image} width={'30%'} height={'30%'} alt="" />
 
-                <Grid display={'flex'} flexDirection={'column'} width={'90%'} ml={2}> 
+                <Grid display={'flex'} flexDirection={'column'} width={'90%'} ml={2}>
                   <Typography variant='subtitle2' style={{ color: 'GrayText' }}>
                     {doctor.Specialization}
                   </Typography >
@@ -152,7 +152,7 @@ function Appointmentconfirm() {
                 </Grid>
 
                 <Grid color={'blue'}>
-                <Link onClick={handleViewDoctorProfile}    sx={{cursor:'pointer'}}  >View Doctor profile</Link>
+                  <Link onClick={handleViewDoctorProfile} sx={{ cursor: 'pointer' }}  >View Doctor profile</Link>
                 </Grid>
 
 

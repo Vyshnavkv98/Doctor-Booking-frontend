@@ -117,25 +117,26 @@ function DoctorListVideoChat({ doctors }) {
                   </Grid>
                   <Grid display={'flex'} flexDirection={'column'}>
                     <Grid>
-                    <Box display='flex' flexDirection='row' flexWrap='wrap' margin={3}>
-  {doctor?.videoConsultationSlots[currentIndex]?.slots.sort().map((button, slotIndex) => (
-    <div key={button} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginRight: '1rem' }}>
-      <Button
-        sx={{ margin: '0.5rem', width: '150px' }}
-        onClick={() => setModalOpen(true)}
-        variant='outlined'
-      >
-        {button}
-      </Button>
-      <ConfirmaAppointment open={modalOpen} onClose={closeModal} onConfirm={() => handleAppointmentDetails(button, slotIndex, doctor?.videoConsultationSlots[currentIndex]?.date, doctor._id, doctor)} appointmentData={{date: doctor?.videoConsultationSlots[currentIndex]?.date,
-          doctorId: doctor._id,
-          button:button,
-        doctor:doctor
-        }}
-           />
-    </div>
-  ))}
-</Box>
+                      <Box display='flex' flexDirection='row' flexWrap='wrap' margin={3}>
+                        {doctor?.videoConsultationSlots[currentIndex]?.slots.sort().map((button, slotIndex) => (
+                          <div key={button} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginRight: '1rem' }}>
+                            <Button
+                              sx={{ margin: '0.5rem', width: '150px' }}
+                              onClick={() => setModalOpen(true)}
+                              variant='outlined'
+                            >
+                              {button}
+                            </Button>
+                            <ConfirmaAppointment open={modalOpen} onClose={closeModal} onConfirm={() => handleAppointmentDetails(button, slotIndex, doctor?.videoConsultationSlots[currentIndex]?.date, doctor._id, doctor)} appointmentData={{
+                              date: doctor?.videoConsultationSlots[currentIndex]?.date,
+                              doctorId: doctor._id,
+                              button: button,
+                              doctor: doctor
+                            }}
+                            />
+                          </div>
+                        ))}
+                      </Box>
 
 
 

@@ -36,11 +36,15 @@ import Bb from './components/doctorHomeNav/mapcomponent/Bb';
 
 
 
+
 function App() {
   const [relogin, setRelogin] = useState(false)
   const [loginStatus, setLoginStatus] = useState(false)
   const [adminLoginStatus, setAdminLoginStatus] = useState(false)
   const dispatch = useDispatch(login)
+
+
+
 
 
 
@@ -60,7 +64,6 @@ function App() {
           <Suspense fallback={<Loader />}>
        
         <Routes>
-           
            
           <Route path='/' element={<LandinPage />}></Route>
           <Route path='/admin' element={<AdminLogin />} ></Route>

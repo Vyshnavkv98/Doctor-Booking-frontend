@@ -9,6 +9,9 @@ import { useSelector } from 'react-redux';
 import axios from '../../../axios/axios'
 import { toast } from 'react-toastify';
 import dayjs from 'dayjs';
+import {
+  useQuery,
+} from '@tanstack/react-query'
 
 function ManageSlots() {
 
@@ -24,43 +27,70 @@ function ManageSlots() {
   const [refresh, setRefresh] = useState(true);
 
 
- 
+  const [timeArrayObject, setTimeArrayObject] = useState([]);
+
   useEffect(() => {
-    if (selectedDate !== null) {
-      const formattedDate = format(selectedDate?.$d, 'MMMM,dd,yyyy');
-      setFormatedDate(formattedDate);
-      fetchSlots(formattedDate);
-    }
-  }, [refresh]);
-  
+    const newTimeArrayObject = time.map((timeSlot) => ({
+      [timeSlot]: false,
+      isConfirmed: false,
+    }));
+    setTimeArrayObject(newTimeArrayObject);
+  }, []);
+
+  useEffect(() => {
+    setTimeArrayObject((prevArrayObject) => {
+      return prevArrayObject.map((item) => {
+        const updatedItem = { ...item };
+        timeSlots.forEach((times) => {
+          console.log(item[times] === false);
+          if (item[times] === false) {
+            item[times] = true;
+          }
+        });
+
+        return updatedItem;
+      });
+    });
+  }, [timeSlots]);
+  useEffect(() => {
+    console.log(timeArrayObject, 'changedddd');
+  }, [timeSlots])
+
+  const { data, isLoading, error, refetch } = useQuery({
+    queryKey: ['slots', formattedDate], // Query key, including the formattedDate as a dependency
+    queryFn: () => fetchSlots(formattedDate), // Query function
+    enabled: !!formattedDate, // Enable the query when formattedDate is truthy
+  });
+
+
   const fetchSlots = async (date) => {
-  try {
-    const res = await axios.post("/get-slots", { doctorId });
-    const slots = res.data.slotsData;
-    for (let i = 0; i < slots.length; i++) {
-      if (slots[i]['date'] === date) {
-        setTimeSlot([...slots[i]['slots']]);
-        if (timeSlots) {
-          const ind = [];
-          timeSlots.forEach((slot) => {
-            return ind.push(time.indexOf(slot));
-          });
-          setSelectedButtonIndices([...ind]);
+    try {
+      const res = await axios.post("/get-slots", { doctorId });
+      const slots = res.data.slotsData;
+      for (let i = 0; i < slots.length; i++) {
+        if (slots[i]['date'] === date) {
+          setTimeSlot([...slots[i]['slots']]);
+          if (timeSlots) {
+            const ind = [];
+            timeSlots.forEach((slot) => {
+              return ind.push(time.indexOf(slot));
+            });
+            return setSelectedButtonIndices([...ind]);
+          }
         }
       }
+    } catch (error) {
+      console.log(error);
     }
-  } catch (error) {
-    console.log(error);
-  }
-};
+  };
 
-const handleDateChange = async (date) => {
-  setRefresh(!refresh);
-  setSelectedDate(date);
-  const formattedDate = format(date?.$d, 'MMMM,dd,yyyy');
-  setFormatedDate(formattedDate);
-  fetchSlots(formattedDate);
-};
+  const handleDateChange = async (date) => {
+    setRefresh(!refresh);
+    setSelectedDate(date);
+    const formattedDate = format(date?.$d, 'MMMM,dd,yyyy');
+    setFormatedDate(formattedDate);
+    fetchSlots(formattedDate);
+  };
 
 
 
@@ -76,7 +106,6 @@ const handleDateChange = async (date) => {
     }
 
   }
-
 
   const style = {
     margin: '0.5rem',
