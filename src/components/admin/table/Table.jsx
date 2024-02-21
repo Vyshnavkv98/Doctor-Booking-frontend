@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from '../../../axios/axios'
 import CircularProgress from '@mui/material/CircularProgress';
 import ConfirmationModal from '../../modal/ConfirmationModal';
+import { useQuery } from '@tanstack/react-query';
 
 
 
@@ -22,15 +23,15 @@ function Table() {
 
     const [block, setBlock] = useState(false)
 
-    const handleBlock = () => {
+    const handleBlock = (id) => {
         setBlock(!block)
         setRefresh(!refresh)
         setLoading(true)
-        const userData = { _id: users[0]._id, blockStatus: block }
+        const userData = { _id:id, blockStatus: block }
         axios.post('/admin/block-user', userData)
 
     }
-    useEffect(() => {
+
         const fetchUsers = async () => {
             try {
                 const response = await axios.get('admin/getuser');
@@ -38,12 +39,26 @@ function Table() {
                     setUsers(response.data);
                     setLoading(false)
                 }
+               return response
+                refetch()
             } catch (error) {
                 console.error('Error fetching users:', error);
             }
         };
-        fetchUsers();
-    }, [refresh]);
+        const { data, isLoading, error, refetch } = useQuery({
+            queryKey:['users'],
+            queryFn: fetchUsers, // Your function for fetching users
+            config: {
+              enabled: true,
+              refetchOnWindowFocus: true,
+              refetchInterval: 50000,
+            },
+          });
+
+
+
+
+  console.log(data,'fromadmin');
 
 
     return (
@@ -116,7 +131,7 @@ function Table() {
                                             }
 
                                         </a>
-                                        <ConfirmationModal open={modalOpen} onClose={closeModal} onConfirm={()=>handleBlock()} />
+                                        <ConfirmationModal open={modalOpen} onClose={closeModal} onConfirm={()=>handleBlock(item?._id)} />
 
                                     </div>
                                 </td>

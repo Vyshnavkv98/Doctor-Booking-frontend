@@ -47,7 +47,12 @@ instance.interceptors.response.use(
 
     if (error.response.status === 403) {
       localStorage.removeItem('access-token')
+      
       window.location.href = '/login'
+      toast.error(`${error.response.data.message}`, {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 1500
+      });
     } else {
 
       toast.error(`${error.response.data.message}`, {

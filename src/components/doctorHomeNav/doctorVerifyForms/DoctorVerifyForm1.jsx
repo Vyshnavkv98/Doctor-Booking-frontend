@@ -20,6 +20,8 @@ import axios from '../../../axios/axios'
 import { useDispatch, useSelector } from 'react-redux';
 import { loginDoctor } from '../../../redux/doctor'
 import MapModal from '../../modal/MapModal'
+import {AddressAutofill} from '@mapbox/search-js-react'
+
 
 
 
@@ -27,6 +29,8 @@ import MapModal from '../../modal/MapModal'
 const defaultTheme = createTheme();
 
 export default function DoctorVerifyForm1() {
+  
+const MAPBOX_TOKEN = "pk.eyJ1IjoidnlzaG5hdjg5IiwiYSI6ImNsbzRjZjM2eDAwazMycWxjNDJtaGVkdGwifQ.A81mqqjURsKCE3zn4HE2jQ"
 
   const dispatch = useDispatch()
   const doctor = useSelector(state => state.doctor.doctor?.doctor);
@@ -493,25 +497,30 @@ export default function DoctorVerifyForm1() {
                     />
                     {<FormHelperText sx={{ fontSize: 15 }} error='true'>{errors.registrationYear}</FormHelperText>}
                   </Grid>
+                    <AddressAutofill accessToken={MAPBOX_TOKEN}>
                   <Grid item xs={12}  display={'flex'}>
                     <TextField
-                      autoComplete="AddressLine1"
+                      autoComplete="Address-level1"
                       name="AddressLine1"
                       required
                       fullWidth
                       id="AddressLine1"
-                      label="AddressLine1"
+                      // label="AddressLine1"
                       autoFocus
                       value={values.AddressLine1}
+                      style={{height:'40px'}}
                       onChange={handleChange}
                     />
+                   
                     <Button onClick={handleOpenMapModal}>Map</Button>
                     <MapModal open={openMapModal} onClose={handleCloseMapModal} onSelectLocation={handleSelectLocation} />
                     {<FormHelperText sx={{ fontSize: 15 }} error='true'>{errors.AddressLine2}</FormHelperText>}
                   </Grid>
                   <Grid item xs={12} >
+                    
+                   
                     <TextField
-                      autoComplete="AddressLine2"
+                    autoComplete="Address-level2 Address-level3"
                       name="AddressLine2"
                       required
                       fullWidth
@@ -523,6 +532,7 @@ export default function DoctorVerifyForm1() {
                     />
                     {<FormHelperText sx={{ fontSize: 15 }} error='true'>{errors.AddressLine2}</FormHelperText>}
                   </Grid>
+                  </AddressAutofill>
                   <Grid item xs={12} >
                     <TextField
                       autoComplete="docs"

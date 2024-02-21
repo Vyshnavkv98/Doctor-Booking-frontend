@@ -10,6 +10,22 @@ import { ContextProvider } from './context/ContextProvider';
 import store, { persistor } from './store';
 import { PersistGate } from 'redux-persist/integration/react';
 import { SocketProvider } from './context/SocketProvider';
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from '@tanstack/react-query'
+import { useErrorBoundary } from 'react-error-boundary';
+
+function MyComponent() {
+  const { ErrorBoundary, didCatch, error } = useErrorBoundary();
+
+  if (didCatch) {
+    return <div>Error: {error.message}</div>;
+  }
+}
+
+const queryClient = new QueryClient()
 // initializeApp(firebaseConfig);
 
 
@@ -18,11 +34,13 @@ root.render(
   <BrowserRouter>
   <SocketProvider>
     <ContextProvider>
+      <QueryClientProvider client={queryClient}>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>     
           <App />
         </PersistGate>
       </Provider>
+      </QueryClientProvider>
     </ContextProvider>
     </SocketProvider>
   </BrowserRouter>
