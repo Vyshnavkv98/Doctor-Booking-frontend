@@ -31,13 +31,15 @@ function UserWalletComponent(props) {
 
         if (appointments) {
             
-            appointments.reduce((prevTotal,item) => {
+         let totalAmount= appointments.reduce((prevTotal,item) => {
+            console.log(item.fee,'fee');
                  prevTotal += (Number(item.fee * 70 / 100))
-                setTotal(prevTotal)
+                
             }, 0)
+            setTotal(totalAmount)
         }
 
-        console.log(total, 'total')
+        console.log(totalAmount, 'totalAmount')
     }, [appointments])
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
