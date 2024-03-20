@@ -32,7 +32,7 @@ function UserWalletComponent(props) {
         if (appointments) {
             
             appointments.reduce((item, prevTotal) => {
-                return prevTotal += (Number(item.fee * 60 / 100))
+                 prevTotal += (Number(item.fee * 70 / 100))
                 setTotal(prevTotal)
             }, 0)
         }

@@ -30,7 +30,6 @@ const handleSidenav=(val)=>{
         fetchAppointments();
     }, []);
 
-    console.log(appointments,'appo');
   return (
     
     <Box display={'flex'} flexDirection={'column'} >
